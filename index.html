@@ -156,6 +156,30 @@
       color: white;
     }
 
+    .btn-secondary {
+      background: white;
+      color: #222;
+      border: 1px solid #bbb;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f5f8;
+    }
+
+    .result-actions {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .result-actions-note {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+    }
+
     .btn-primary:disabled {
       opacity: .5;
       cursor: not-allowed;
@@ -829,6 +853,23 @@
       และไม่ใช่การวินิจฉัยโรค
       หากมีความกังวลเกี่ยวกับสุขภาพหรือการทำงาน
       ควรปรึกษาบุคลากรทางสุขภาพที่เหมาะสม
+
+    </div>
+
+    <div class="result-actions">
+
+      <button
+        id="restartBtn"
+        type="button"
+        class="btn-secondary">
+
+        ทำแบบประเมินใหม่
+
+      </button>
+
+      <p class="result-actions-note">
+        กลับไปเลือก BAT-12-TH หรือ BAT-23-TH
+      </p>
 
     </div>
 
@@ -1875,6 +1916,31 @@ function showResult(scores) {
     behavior: 'smooth'
   });
 }
+
+
+/************************************************************
+ * Restart / Back to form selection
+ ************************************************************/
+
+document
+  .getElementById('restartBtn')
+  .addEventListener(
+    'click',
+    function() {
+
+      // ใช้ URL ปัจจุบัน เพื่อรองรับ GitHub Pages
+      // และคง path ของ repository เดิมไว้
+      const url =
+        new URL(window.location.href);
+
+      // ลบเฉพาะ parameter ที่ใช้เลือกแบบประเมิน
+      url.searchParams.delete('form');
+
+      // กลับไปหน้าเลือก BAT-12-TH / BAT-23-TH
+      window.location.href =
+        url.href;
+    }
+  );
 
 
 /************************************************************
