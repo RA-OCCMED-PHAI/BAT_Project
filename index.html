@@ -161,6 +161,29 @@
       cursor: not-allowed;
     }
 
+    .form-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .form-option {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 22px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      color: #222;
+      text-decoration: none;
+      background: #fafafa;
+    }
+
+    .form-option strong { font-size: 22px; }
+    .form-option:hover { background: #eef2f7; border-color: #555; }
+    .form-option:focus-visible { outline: 3px solid #555; outline-offset: 3px; }
+
     .hidden {
       display: none !important;
     }
@@ -244,6 +267,7 @@
     }
 
     @media (max-width: 650px) {
+      .form-options { grid-template-columns: 1fr; }
 
       .scale {
         grid-template-columns: 1fr;
@@ -294,8 +318,24 @@
   <!-- CONSENT -->
   <!-- ===================================== -->
 
-  <section id="consentSection"
-           class="card">
+  <section id="formSelectionSection" class="card hidden">
+    <h2>เลือกแบบประเมิน</h2>
+    <p>กรุณาเลือกฉบับที่ต้องการทำ หรือฉบับที่ผู้วิจัยกำหนดให้ท่าน</p>
+    <p id="formSelectionMessage" class="notice hidden" role="alert"></p>
+    <div class="form-options">
+      <a id="bat12Link" class="form-option" href="?form=12">
+        <strong>BAT-12-TH</strong>
+        <span>แบบประเมินหลัก 12 ข้อ · 4 ด้าน</span>
+      </a>
+      <a id="bat23Link" class="form-option" href="?form=23">
+        <strong>BAT-23-TH</strong>
+        <span>แบบประเมินหลัก 23 ข้อ · 4 ด้าน</span>
+      </a>
+    </div>
+    <p id="secondarySelectionNote">แต่ละฉบับมีคำถามอาการเพิ่มเติม 11 ข้อ และข้อมูลทั่วไป</p>
+  </section>
+
+  <section id="consentSection" class="card hidden">
 
     <h2>
       ข้อมูลสำหรับผู้เข้าร่วมการวิจัย
@@ -466,7 +506,7 @@
 
     <section class="card">
 
-      <h2>แบบประเมิน</h2>
+      <h2 id="assessmentTitle">แบบประเมิน</h2>
 
       <p>
         กรุณาเลือกคำตอบที่ตรงกับประสบการณ์
@@ -829,10 +869,11 @@ const params =
 const requestedForm =
   params.get('form');
 
+// ถ้าไม่ระบุ form ให้แสดงหน้าเลือกฉบับ แทนการเปิด BAT12 อัตโนมัติ
+// ลิงก์สำหรับผู้เข้าร่วม: ?form=12 หรือ ?form=23
 const FORM_VERSION =
-  requestedForm === '23'
-    ? 'BAT23'
-    : 'BAT12';
+  requestedForm === '12' ? 'BAT12' :
+  requestedForm === '23' ? 'BAT23' : null;
 
 
 /************************************************************
@@ -986,17 +1027,36 @@ const SCALE = [
  * Startup
  ************************************************************/
 
-document.getElementById(
-  'versionBadge'
-).textContent =
-  FORM_VERSION === 'BAT12'
-    ? 'BAT-12-TH'
-    : 'BAT-23-TH';
+// ใช้ URL เดิมเพื่อรักษา path ของ GitHub Pages และพารามิเตอร์อื่น
+['12', '23'].forEach(function(version) {
+  const url = new URL(window.location.href);
+  url.searchParams.set('form', version);
+  document.getElementById('bat' + version + 'Link').href = url.href;
+});
 
+if (!INCLUDE_SECONDARY) {
+  document.getElementById('secondarySelectionNote').classList.add('hidden');
+}
 
-renderCoreQuestions();
-
-renderSecondaryQuestions();
+if (FORM_VERSION) {
+  const versionLabel = FORM_VERSION === 'BAT12' ? 'BAT-12-TH' : 'BAT-23-TH';
+  const questionCount = FORM_VERSION === 'BAT12' ? 12 : 23;
+  document.getElementById('versionBadge').textContent = versionLabel;
+  document.title = versionLabel + ' | Burnout Assessment Tool';
+  document.getElementById('assessmentTitle').textContent =
+    versionLabel + ' — แบบประเมินหลัก ' + questionCount + ' ข้อ';
+  renderCoreQuestions();
+  renderSecondaryQuestions();
+  document.getElementById('consentSection').classList.remove('hidden');
+} else {
+  document.getElementById('versionBadge').textContent = 'BAT-12-TH / BAT-23-TH';
+  document.getElementById('formSelectionSection').classList.remove('hidden');
+  if (requestedForm !== null) {
+    const message = document.getElementById('formSelectionMessage');
+    message.textContent = 'ลิงก์ระบุฉบับไม่ถูกต้อง กรุณาเลือก BAT-12 หรือ BAT-23 ด้านล่าง';
+    message.classList.remove('hidden');
+  }
+}
 
 
 /************************************************************
@@ -1147,6 +1207,8 @@ document
     'click',
     function() {
 
+      if (!FORM_VERSION) return;
+
       const consent =
         checkedValue('consent');
 
@@ -1264,6 +1326,7 @@ document
     async function(event) {
 
       event.preventDefault();
+      if (!FORM_VERSION) return;
 
       const form = event.currentTarget;
 
