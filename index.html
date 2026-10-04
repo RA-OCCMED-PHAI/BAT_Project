@@ -3,8 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Burnout Assessment Tool</title>
 
@@ -20,6 +23,7 @@
         "Noto Sans Thai",
         "Tahoma",
         sans-serif;
+
       background: #f5f6f8;
       color: #222;
       line-height: 1.65;
@@ -156,6 +160,11 @@
       color: white;
     }
 
+    .btn-primary:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
     .btn-secondary {
       background: white;
       color: #222;
@@ -166,28 +175,10 @@
       background: #f3f5f8;
     }
 
-    .result-actions {
-      margin-top: 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .result-actions-note {
-      margin: 0;
-      font-size: 14px;
-      color: #666;
-    }
-
-    .btn-primary:disabled {
-      opacity: .5;
-      cursor: not-allowed;
-    }
-
     .form-options {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
       gap: 14px;
       margin: 20px 0;
     }
@@ -196,17 +187,31 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+
       padding: 22px;
+
       border: 1px solid #ccc;
       border-radius: 12px;
+
       color: #222;
       text-decoration: none;
+
       background: #fafafa;
     }
 
-    .form-option strong { font-size: 22px; }
-    .form-option:hover { background: #eef2f7; border-color: #555; }
-    .form-option:focus-visible { outline: 3px solid #555; outline-offset: 3px; }
+    .form-option strong {
+      font-size: 22px;
+    }
+
+    .form-option:hover {
+      background: #eef2f7;
+      border-color: #555;
+    }
+
+    .form-option:focus-visible {
+      outline: 3px solid #555;
+      outline-offset: 3px;
+    }
 
     .hidden {
       display: none !important;
@@ -285,13 +290,30 @@
       border-radius: 10px;
     }
 
+    .result-actions {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .result-actions-note {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+    }
+
     .honeypot {
       position: absolute;
       left: -9999px;
     }
 
     @media (max-width: 650px) {
-      .form-options { grid-template-columns: 1fr; }
+
+      .form-options {
+        grid-template-columns: 1fr;
+      }
 
       .scale {
         grid-template-columns: 1fr;
@@ -314,6 +336,7 @@
       .header {
         padding: 20px;
       }
+
     }
 
   </style>
@@ -324,12 +347,21 @@
 
 <div class="container">
 
+
+  <!-- ===================================== -->
+  <!-- HEADER -->
+  <!-- ===================================== -->
+
   <div class="header">
 
-    <h1>Burnout Assessment Tool</h1>
+    <h1>
+      Burnout Assessment Tool
+    </h1>
 
-    <div id="versionBadge"
-         class="badge"></div>
+    <div
+      id="versionBadge"
+      class="badge">
+    </div>
 
     <p>
       แบบประเมินภาวะหมดไฟในการทำงาน
@@ -339,55 +371,121 @@
 
 
   <!-- ===================================== -->
+  <!-- FORM SELECTION -->
+  <!-- ===================================== -->
+
+  <!--
+    หน้านี้จะเห็นเฉพาะกรณีเปิด URL หลัก
+    โดยไม่มี ?form=12 หรือ ?form=23
+
+    ผู้เข้าร่วมจริงควรใช้ลิงก์แยก:
+    ?form=12
+    ?form=23
+  -->
+
+  <section
+    id="formSelectionSection"
+    class="card hidden">
+
+    <h2>
+      เลือกแบบประเมิน
+    </h2>
+
+    <p>
+      กรุณาเลือกฉบับที่ต้องการทำ
+      หรือฉบับที่ผู้วิจัยกำหนดให้ท่าน
+    </p>
+
+    <p
+      id="formSelectionMessage"
+      class="notice hidden"
+      role="alert">
+    </p>
+
+    <div class="form-options">
+
+      <a
+        id="bat12Link"
+        class="form-option"
+        href="?form=12">
+
+        <strong>
+          BAT-12-TH
+        </strong>
+
+        <span>
+          แบบประเมินหลัก 12 ข้อ · 4 ด้าน
+        </span>
+
+      </a>
+
+
+      <a
+        id="bat23Link"
+        class="form-option"
+        href="?form=23">
+
+        <strong>
+          BAT-23-TH
+        </strong>
+
+        <span>
+          แบบประเมินหลัก 23 ข้อ · 4 ด้าน
+        </span>
+
+      </a>
+
+    </div>
+
+    <p id="secondarySelectionNote">
+      แต่ละฉบับมีคำถามอาการเพิ่มเติม
+      11 ข้อ และข้อมูลทั่วไป
+    </p>
+
+  </section>
+
+
+  <!-- ===================================== -->
   <!-- CONSENT -->
   <!-- ===================================== -->
 
-  <section id="formSelectionSection" class="card hidden">
-    <h2>เลือกแบบประเมิน</h2>
-    <p>กรุณาเลือกฉบับที่ต้องการทำ หรือฉบับที่ผู้วิจัยกำหนดให้ท่าน</p>
-    <p id="formSelectionMessage" class="notice hidden" role="alert"></p>
-    <div class="form-options">
-      <a id="bat12Link" class="form-option" href="?form=12">
-        <strong>BAT-12-TH</strong>
-        <span>แบบประเมินหลัก 12 ข้อ · 4 ด้าน</span>
-      </a>
-      <a id="bat23Link" class="form-option" href="?form=23">
-        <strong>BAT-23-TH</strong>
-        <span>แบบประเมินหลัก 23 ข้อ · 4 ด้าน</span>
-      </a>
-    </div>
-    <p id="secondarySelectionNote">แต่ละฉบับมีคำถามอาการเพิ่มเติม 11 ข้อ และข้อมูลทั่วไป</p>
-  </section>
-
-  <section id="consentSection" class="card hidden">
+  <section
+    id="consentSection"
+    class="card hidden">
 
     <h2>
       ข้อมูลสำหรับผู้เข้าร่วมการวิจัย
     </h2>
 
+
     <div class="consent-box">
 
       <!--
-      สำคัญ:
-      ให้นำ Participant Information Sheet /
-      Informed Consent ฉบับที่ผ่าน EC แล้ว
-      มาวางตรงนี้แบบคำต่อคำ
+        ให้นำ Participant Information Sheet /
+        Informed Consent Form
+        ฉบับที่ผ่าน EC แล้วมาใส่ตรงนี้
       -->
 
       <p>
+
         <strong>
           รอข้อความ Participant Information Sheet
           และ Informed Consent Form
-          ฉบับที่ได้รับการอนุมัติจากคณะกรรมการจริยธรรม
+          ฉบับที่ได้รับการอนุมัติจาก
+          คณะกรรมการจริยธรรม
           มาวางในบริเวณนี้
         </strong>
+
       </p>
+
 
       <p>
         การเข้าร่วมการวิจัยเป็นไปโดยสมัครใจ
-        ผู้เข้าร่วมสามารถหยุดทำแบบประเมินก่อนส่งคำตอบได้
-        และข้อมูลจะใช้เพื่อวัตถุประสงค์ทางวิชาการ
-        และการวิจัยตามโครงการที่ได้รับอนุมัติ
+        ผู้เข้าร่วมสามารถหยุดทำแบบประเมิน
+        ก่อนส่งคำตอบได้
+        และข้อมูลจะใช้เพื่อวัตถุประสงค์
+        ทางวิชาการและการวิจัย
+        ตามโครงการที่ได้รับอนุมัติ
       </p>
 
     </div>
@@ -402,19 +500,26 @@
       <div class="radio-line">
 
         <label>
+
           <input
             type="radio"
             name="consent"
             value="yes">
+
           ข้าพเจ้ายินยอมเข้าร่วมการวิจัย
+
         </label>
 
+
         <label>
+
           <input
             type="radio"
             name="consent"
             value="no">
+
           ไม่ยินยอม
+
         </label>
 
       </div>
@@ -425,7 +530,9 @@
     <hr>
 
 
-    <h3>การตรวจสอบคุณสมบัติ</h3>
+    <h3>
+      การตรวจสอบคุณสมบัติ
+    </h3>
 
 
     <div class="form-group">
@@ -437,17 +544,26 @@
       <div class="radio-line">
 
         <label>
-          <input type="radio"
-                 name="age18"
-                 value="yes">
+
+          <input
+            type="radio"
+            name="age18"
+            value="yes">
+
           ใช่
+
         </label>
 
+
         <label>
-          <input type="radio"
-                 name="age18"
-                 value="no">
+
+          <input
+            type="radio"
+            name="age18"
+            value="no">
+
           ไม่ใช่
+
         </label>
 
       </div>
@@ -465,17 +581,26 @@
       <div class="radio-line">
 
         <label>
-          <input type="radio"
-                 name="privateEmployee"
-                 value="yes">
+
+          <input
+            type="radio"
+            name="privateEmployee"
+            value="yes">
+
           ใช่
+
         </label>
 
+
         <label>
-          <input type="radio"
-                 name="privateEmployee"
-                 value="no">
+
+          <input
+            type="radio"
+            name="privateEmployee"
+            value="no">
+
           ไม่ใช่
+
         </label>
 
       </div>
@@ -492,17 +617,26 @@
       <div class="radio-line">
 
         <label>
-          <input type="radio"
-                 name="readThai"
-                 value="yes">
+
+          <input
+            type="radio"
+            name="readThai"
+            value="yes">
+
           ใช่
+
         </label>
 
+
         <label>
-          <input type="radio"
-                 name="readThai"
-                 value="no">
+
+          <input
+            type="radio"
+            name="readThai"
+            value="no">
+
           ไม่ใช่
+
         </label>
 
       </div>
@@ -510,9 +644,10 @@
     </div>
 
 
-    <button id="startBtn"
-            class="btn-primary"
-            type="button">
+    <button
+      id="startBtn"
+      class="btn-primary"
+      type="button">
 
       เริ่มทำแบบประเมิน
 
@@ -525,12 +660,20 @@
   <!-- QUESTIONNAIRE -->
   <!-- ===================================== -->
 
-  <form id="assessmentForm"
-        class="hidden">
+  <form
+    id="assessmentForm"
+    class="hidden">
+
+
+    <!-- ================================= -->
+    <!-- CORE BAT -->
+    <!-- ================================= -->
 
     <section class="card">
 
-      <h2 id="assessmentTitle">แบบประเมิน</h2>
+      <h2 id="assessmentTitle">
+        แบบประเมิน
+      </h2>
 
       <p>
         กรุณาเลือกคำตอบที่ตรงกับประสบการณ์
@@ -547,94 +690,194 @@
 
       </div>
 
-      <div id="coreQuestions"></div>
+      <div id="coreQuestions">
+      </div>
 
     </section>
 
 
-    <!-- =============================== -->
-    <!-- Secondary symptoms -->
-    <!-- =============================== -->
+    <!-- ================================= -->
+    <!-- SECONDARY -->
+    <!-- ================================= -->
 
-    <section id="secondarySection"
-             class="card">
+    <section
+      id="secondarySection"
+      class="card">
 
-      <h2>อาการทางกายเหตุจิต</h2>
+      <h2>
+        อาการทางกายเหตุจิต
+      </h2>
 
-      <div id="secondaryQuestions"></div>
+      <div id="secondaryQuestions">
+      </div>
 
     </section>
 
 
-    <!-- =============================== -->
-    <!-- Demographic -->
-    <!-- =============================== -->
+    <!-- ================================= -->
+    <!-- DEMOGRAPHIC -->
+    <!-- ================================= -->
 
     <section class="card">
 
-      <h2>ข้อมูลทั่วไป</h2>
+      <h2>
+        ข้อมูลทั่วไป
+      </h2>
 
+
+      <!-- SEX -->
 
       <div class="form-group">
 
-        <label>เพศ</label>
+        <label>
+          เพศ
+        </label>
 
-        <select name="sex" required>
-          <option value="">-- เลือก --</option>
-          <option value="ชาย">ชาย</option>
-          <option value="หญิง">หญิง</option>
-          <option value="ไม่ระบุเพศ">ไม่ระบุเพศ</option>
+        <select
+          name="sex"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option value="ชาย">
+            ชาย
+          </option>
+
+          <option value="หญิง">
+            หญิง
+          </option>
+
+          <option value="ไม่ระบุเพศ">
+            ไม่ระบุเพศ
+          </option>
+
         </select>
 
       </div>
 
 
+      <!-- AGE -->
+
       <div class="form-group">
 
-        <label>อายุ</label>
+        <label>
+          อายุ
+        </label>
 
-        <select name="age_group" required>
-          <option value="">-- เลือก --</option>
-          <option>18–30 ปี</option>
-          <option>31–40 ปี</option>
-          <option>41–50 ปี</option>
-          <option>51–60 ปี</option>
-          <option>มากกว่า 60 ปี</option>
+        <select
+          name="age_group"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            18–30 ปี
+          </option>
+
+          <option>
+            31–40 ปี
+          </option>
+
+          <option>
+            41–50 ปี
+          </option>
+
+          <option>
+            51–60 ปี
+          </option>
+
+          <option>
+            มากกว่า 60 ปี
+          </option>
+
         </select>
 
       </div>
 
 
+      <!-- EDUCATION -->
+
       <div class="form-group">
 
-        <label>ระดับการศึกษา</label>
+        <label>
+          ระดับการศึกษา
+        </label>
 
-        <select name="education" required>
-          <option value="">-- เลือก --</option>
-          <option>ต่ำกว่าปริญญาตรี</option>
-          <option>ปริญญาตรีหรือเทียบเท่า</option>
-          <option>ปริญญาโทหรือเทียบเท่า</option>
-          <option>ปริญญาเอกหรือเทียบเท่า</option>
+        <select
+          name="education"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            ต่ำกว่าปริญญาตรี
+          </option>
+
+          <option>
+            ปริญญาตรีหรือเทียบเท่า
+          </option>
+
+          <option>
+            ปริญญาโทหรือเทียบเท่า
+          </option>
+
+          <option>
+            ปริญญาเอกหรือเทียบเท่า
+          </option>
+
         </select>
 
       </div>
 
 
+      <!-- WORK TENURE -->
+
       <div class="form-group">
 
-        <label>อายุงานรวม</label>
+        <label>
+          อายุงานรวม
+        </label>
 
-        <select name="work_tenure" required>
-          <option value="">-- เลือก --</option>
-          <option>น้อยกว่า 1 ปี</option>
-          <option>1–3 ปี</option>
-          <option>4–6 ปี</option>
-          <option>7–10 ปี</option>
-          <option>มากกว่า 10 ปี</option>
+        <select
+          name="work_tenure"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            น้อยกว่า 1 ปี
+          </option>
+
+          <option>
+            1–3 ปี
+          </option>
+
+          <option>
+            4–6 ปี
+          </option>
+
+          <option>
+            7–10 ปี
+          </option>
+
+          <option>
+            มากกว่า 10 ปี
+          </option>
+
         </select>
 
       </div>
 
+
+      <!-- INDUSTRY -->
 
       <div class="form-group">
 
@@ -643,15 +886,42 @@
           อยู่ในอุตสาหกรรมใด
         </label>
 
-        <select name="industry" required>
-          <option value="">-- เลือก --</option>
-          <option>การผลิต/อุตสาหกรรม</option>
-          <option>การเงิน/ธนาคาร/ประกันภัย</option>
-          <option>การค้า/ค้าปลีก/ค้าส่ง</option>
-          <option>โรงแรม/ท่องเที่ยว/บริการ</option>
-          <option>เทคโนโลยี/โทรคมนาคม</option>
-          <option>ก่อสร้าง/อสังหาริมทรัพย์</option>
-          <option>อื่น ๆ</option>
+        <select
+          name="industry"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            การผลิต/อุตสาหกรรม
+          </option>
+
+          <option>
+            การเงิน/ธนาคาร/ประกันภัย
+          </option>
+
+          <option>
+            การค้า/ค้าปลีก/ค้าส่ง
+          </option>
+
+          <option>
+            โรงแรม/ท่องเที่ยว/บริการ
+          </option>
+
+          <option>
+            เทคโนโลยี/โทรคมนาคม
+          </option>
+
+          <option>
+            ก่อสร้าง/อสังหาริมทรัพย์
+          </option>
+
+          <option>
+            อื่น ๆ
+          </option>
+
         </select>
 
         <input
@@ -662,15 +932,34 @@
       </div>
 
 
+      <!-- EMPLOYMENT STATUS -->
+
       <div class="form-group">
 
-        <label>สถานภาพการจ้างงานในปัจจุบัน</label>
+        <label>
+          สถานภาพการจ้างงานในปัจจุบัน
+        </label>
 
-        <select name="employment_status" required>
-          <option value="">-- เลือก --</option>
-          <option>พนักงานประจำ</option>
-          <option>พนักงานชั่วคราว/สัญญาจ้าง</option>
-          <option>อื่น ๆ</option>
+        <select
+          name="employment_status"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            พนักงานประจำ
+          </option>
+
+          <option>
+            พนักงานชั่วคราว/สัญญาจ้าง
+          </option>
+
+          <option>
+            อื่น ๆ
+          </option>
+
         </select>
 
         <input
@@ -681,17 +970,42 @@
       </div>
 
 
+      <!-- JOB LEVEL -->
+
       <div class="form-group">
 
-        <label>ระดับตำแหน่งงานปัจจุบัน</label>
+        <label>
+          ระดับตำแหน่งงานปัจจุบัน
+        </label>
 
-        <select name="job_level" required>
-          <option value="">-- เลือก --</option>
-          <option>พนักงานระดับปฏิบัติการ</option>
-          <option>หัวหน้างาน/ผู้ควบคุมงาน</option>
-          <option>ผู้จัดการ</option>
-          <option>ผู้บริหาร</option>
-          <option>อื่น ๆ</option>
+        <select
+          name="job_level"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            พนักงานระดับปฏิบัติการ
+          </option>
+
+          <option>
+            หัวหน้างาน/ผู้ควบคุมงาน
+          </option>
+
+          <option>
+            ผู้จัดการ
+          </option>
+
+          <option>
+            ผู้บริหาร
+          </option>
+
+          <option>
+            อื่น ๆ
+          </option>
+
         </select>
 
         <input
@@ -702,44 +1016,93 @@
       </div>
 
 
+      <!-- REGION -->
+
       <div class="form-group">
 
-        <label>สถานที่ทำงานตั้งอยู่ในภูมิภาคใด</label>
+        <label>
+          สถานที่ทำงานตั้งอยู่ในภูมิภาคใด
+        </label>
 
-        <select name="region" required>
-          <option value="">-- เลือก --</option>
-          <option>ภาคเหนือ</option>
-          <option>ตะวันออกเฉียงเหนือ (อีสาน)</option>
-          <option>ภาคกลาง</option>
-          <option>ภาคตะวันออก</option>
-          <option>ภาคตะวันตก</option>
-          <option>ภาคใต้</option>
+        <select
+          name="region"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            ภาคเหนือ
+          </option>
+
+          <option>
+            ตะวันออกเฉียงเหนือ (อีสาน)
+          </option>
+
+          <option>
+            ภาคกลาง
+          </option>
+
+          <option>
+            ภาคตะวันออก
+          </option>
+
+          <option>
+            ภาคตะวันตก
+          </option>
+
+          <option>
+            ภาคใต้
+          </option>
+
         </select>
 
       </div>
 
 
+      <!-- INCOME -->
+
       <div class="form-group">
 
-        <label>รายได้ต่อเดือน</label>
+        <label>
+          รายได้ต่อเดือน
+        </label>
 
-        <select name="income" required>
-          <option value="">-- เลือก --</option>
-          <option>ต่ำกว่า 20,000 บาท</option>
-          <option>20,000–30,000 บาท</option>
-          <option>30,001–40,000 บาท</option>
-          <option>40,001–50,000 บาท</option>
-          <option>มากกว่า 50,000 บาท</option>
+        <select
+          name="income"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            ต่ำกว่า 20,000 บาท
+          </option>
+
+          <option>
+            20,000–30,000 บาท
+          </option>
+
+          <option>
+            30,001–40,000 บาท
+          </option>
+
+          <option>
+            40,001–50,000 บาท
+          </option>
+
+          <option>
+            มากกว่า 50,000 บาท
+          </option>
+
         </select>
 
       </div>
 
 
-      <!--
-      กรุณาตรวจสอบ wording ข้อนี้กับฉบับ EC
-      เพราะไฟล์ต้นฉบับเขียน "จำนวนชั่วโมง"
-      แต่ตัวเลือกเป็นจำนวนวัน
-      -->
+      <!-- WORK DAYS -->
 
       <div class="form-group">
 
@@ -747,17 +1110,40 @@
           จำนวนวันทำงานเฉลี่ยต่อสัปดาห์
         </label>
 
-        <select name="work_days_week" required>
-          <option value="">-- เลือก --</option>
-          <option>1–2 วันต่อสัปดาห์</option>
-          <option>3 วันต่อสัปดาห์</option>
-          <option>4 วันต่อสัปดาห์</option>
-          <option>5 วันต่อสัปดาห์</option>
-          <option>6 วันต่อสัปดาห์</option>
+        <select
+          name="work_days_week"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            1–2 วันต่อสัปดาห์
+          </option>
+
+          <option>
+            3 วันต่อสัปดาห์
+          </option>
+
+          <option>
+            4 วันต่อสัปดาห์
+          </option>
+
+          <option>
+            5 วันต่อสัปดาห์
+          </option>
+
+          <option>
+            6 วันต่อสัปดาห์
+          </option>
+
         </select>
 
       </div>
 
+
+      <!-- COMPANY SIZE -->
 
       <div class="form-group">
 
@@ -765,40 +1151,77 @@
           บริษัท/องค์กรมีพนักงานทั้งหมดประมาณกี่คน
         </label>
 
-        <select name="company_size" required>
-          <option value="">-- เลือก --</option>
+        <select
+          name="company_size"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
           <option value="S">
             S (Small): 1–50 คน
           </option>
+
           <option value="M">
             M (Medium): 51–200 คน
           </option>
+
           <option value="L">
             L (Large): 201 คนขึ้นไป
           </option>
+
         </select>
 
       </div>
 
+
+      <!-- MARITAL -->
 
       <div class="form-group">
 
-        <label>สถานภาพสมรส</label>
+        <label>
+          สถานภาพสมรส
+        </label>
 
-        <select name="marital_status" required>
-          <option value="">-- เลือก --</option>
-          <option>โสด</option>
-          <option>แต่งงานและอยู่ร่วมกัน</option>
-          <option>แต่งงานแต่ไม่ได้อยู่ร่วมกัน</option>
-          <option>อยู่ด้วยกันโดยไม่ได้แต่งงาน</option>
-          <option>หม้าย</option>
-          <option>หย่า/แยกทาง</option>
+        <select
+          name="marital_status"
+          required>
+
+          <option value="">
+            -- เลือก --
+          </option>
+
+          <option>
+            โสด
+          </option>
+
+          <option>
+            แต่งงานและอยู่ร่วมกัน
+          </option>
+
+          <option>
+            แต่งงานแต่ไม่ได้อยู่ร่วมกัน
+          </option>
+
+          <option>
+            อยู่ด้วยกันโดยไม่ได้แต่งงาน
+          </option>
+
+          <option>
+            หม้าย
+          </option>
+
+          <option>
+            หย่า/แยกทาง
+          </option>
+
         </select>
 
       </div>
 
 
-      <!-- Honeypot -->
+      <!-- HONEYPOT -->
 
       <input
         type="text"
@@ -826,35 +1249,48 @@
   <!-- RESULT -->
   <!-- ===================================== -->
 
-  <section id="resultSection"
-           class="card result-card hidden">
+  <section
+    id="resultSection"
+    class="card result-card hidden">
 
-    <h2>ผลการประเมิน</h2>
+    <h2>
+      ผลการประเมิน
+    </h2>
 
     <p>
       คะแนนเฉลี่ยรวม
     </p>
 
-    <div id="overallScore"
-         class="score-big">
+    <div
+      id="overallScore"
+      class="score-big">
     </div>
 
-    <div id="riskBadge"
-         class="risk">
+    <div
+      id="riskBadge"
+      class="risk">
     </div>
 
     <div id="dimensionResults">
     </div>
+
 
     <div class="disclaimer">
 
       ผลการประเมินนี้เป็นการแสดงระดับคะแนน
       ตามเกณฑ์ที่กำหนดในแบบประเมิน
       และไม่ใช่การวินิจฉัยโรค
-      หากมีความกังวลเกี่ยวกับสุขภาพหรือการทำงาน
+
+      หากมีความกังวลเกี่ยวกับสุขภาพ
+      หรือการทำงาน
       ควรปรึกษาบุคลากรทางสุขภาพที่เหมาะสม
 
     </div>
+
+
+    <!-- ================================= -->
+    <!-- RESTART -->
+    <!-- ================================= -->
 
     <div class="result-actions">
 
@@ -863,12 +1299,13 @@
         type="button"
         class="btn-secondary">
 
-        ทำแบบประเมินใหม่
+        ทำแบบประเมินอีกครั้ง
 
       </button>
 
-      <p class="result-actions-note">
-        กลับไปเลือก BAT-12-TH หรือ BAT-23-TH
+      <p
+        id="restartNote"
+        class="result-actions-note">
       </p>
 
     </div>
@@ -880,14 +1317,19 @@
   <!-- STOP -->
   <!-- ===================================== -->
 
-  <section id="stopSection"
-           class="card hidden">
+  <section
+    id="stopSection"
+    class="card hidden">
 
-    <h2>สิ้นสุดแบบสอบถาม</h2>
+    <h2>
+      สิ้นสุดแบบสอบถาม
+    </h2>
 
-    <p id="stopMessage"></p>
+    <p id="stopMessage">
+    </p>
 
   </section>
+
 
 </div>
 
@@ -898,133 +1340,268 @@
  * CONFIG
  ************************************************************/
 
+/*
+ * หากคุณ Update deployment เดิมของ Apps Script
+ * URL นี้ใช้ต่อได้
+ *
+ * หากสร้าง deployment ใหม่
+ * ให้เอา Web App URL ใหม่มาเปลี่ยนตรงนี้
+ */
+
 const APP_SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbx0V9e5z6DxQO_T1GT0uw9NbgtCXz9jdTajYNCePXhVBmrjIJinIPfcboXO-Wk4rzvF8Q/exec';
 
-const INCLUDE_SECONDARY = true;
 
+const INCLUDE_SECONDARY =
+  true;
+
+
+/************************************************************
+ * READ FORM FROM URL
+ *
+ * ?form=12 -> BAT12
+ * ?form=23 -> BAT23
+ ************************************************************/
 
 const params =
-  new URLSearchParams(window.location.search);
+  new URLSearchParams(
+    window.location.search
+  );
+
 
 const requestedForm =
   params.get('form');
 
-// ถ้าไม่ระบุ form ให้แสดงหน้าเลือกฉบับ แทนการเปิด BAT12 อัตโนมัติ
-// ลิงก์สำหรับผู้เข้าร่วม: ?form=12 หรือ ?form=23
+
 const FORM_VERSION =
-  requestedForm === '12' ? 'BAT12' :
-  requestedForm === '23' ? 'BAT23' : null;
+
+  requestedForm === '12'
+    ? 'BAT12'
+
+    : requestedForm === '23'
+      ? 'BAT23'
+
+      : null;
 
 
 /************************************************************
- * Question sets
+ * QUESTION SETS
  ************************************************************/
 
 const QUESTION_SETS = {
 
+
+  /********************************************************
+   * BAT-12
+   ********************************************************/
+
   BAT12: [
 
     {
-      dimension: 'ความเหนื่อยล้า',
-      key: 'exhaustion',
+
+      dimension:
+        'ความเหนื่อยล้า',
+
+      key:
+        'exhaustion',
+
       items: [
+
         'ฉันรู้สึกเหนื่อยล้าทางจิตใจเมื่ออยู่ที่ทำงาน',
+
         'ฉันพบว่ามันยากที่จะหายเหนื่อยหลังจากทำงานเสร็จ',
+
         'ฉันรู้สึกเหนื่อยล้าทางร่างกายเมื่ออยู่ที่ทำงาน'
+
       ]
+
     },
 
+
     {
-      dimension: 'ระยะห่างทางจิตใจ',
-      key: 'mentalDistance',
+
+      dimension:
+        'ระยะห่างทางจิตใจ',
+
+      key:
+        'mentalDistance',
+
       items: [
+
         'ฉันประสบปัญหาในการหาความกระตือรือร้นในการทำงาน',
+
         'ฉันรู้สึกว่าฉันไม่ชอบงานที่ฉันทำอย่างมาก',
+
         'ฉันมองว่างานที่ฉันทำไม่ได้มีความหมายต่อผู้อื่นขนาดนั้น'
+
       ]
+
     },
 
+
     {
-      dimension: 'ความบกพร่องทางด้านความคิด',
-      key: 'cognitive',
+
+      dimension:
+        'ความบกพร่องทางด้านความคิด',
+
+      key:
+        'cognitive',
+
       items: [
+
         'ฉันมีปัญหาเกี่ยวกับการมีสมาธิในที่ทำงาน',
+
         'ในขณะที่ฉันทำงาน ฉันมีปัญหาในการจดจ่อในงาน',
+
         'ฉันทำงานผิดพลาดเพราะฉันใจลอยไปคิดเรื่องอื่น'
+
       ]
+
     },
 
+
     {
-      dimension: 'ความบกพร่องทางอารมณ์',
-      key: 'emotional',
+
+      dimension:
+        'ความบกพร่องทางอารมณ์',
+
+      key:
+        'emotional',
+
       items: [
+
         'ฉันรู้สึกว่าไม่สามารถควบคุมอารมณ์ของตัวเองได้ในที่ทำงาน',
+
         'ฉันรู้สึกไม่เป็นตัวของตัวเองจากปฏิกิริยาทางอารมณ์ที่เกิดขึ้นในที่ทำงาน',
+
         'ในที่ทำงาน ฉันอาจจะแสดงอารมณ์ออกมากเกินไปโดยไม่ตั้งใจ'
+
       ]
+
     }
 
   ],
 
 
+  /********************************************************
+   * BAT-23
+   ********************************************************/
+
   BAT23: [
 
     {
-      dimension: 'ความเหนื่อยล้า',
-      key: 'exhaustion',
+
+      dimension:
+        'ความเหนื่อยล้า',
+
+      key:
+        'exhaustion',
+
       items: [
+
         'ฉันรู้สึกเหนื่อยล้าทางจิตใจเมื่ออยู่ที่ทำงาน',
+
         'ฉันต้องใช้ความพยายามอย่างมากในทุก ๆ การกระทำในที่ทำงาน',
+
         'ฉันพบว่ามันยากที่จะหายเหนื่อยหลังจากทำงานเสร็จ',
+
         'ฉันรู้สึกเหนื่อยล้าทางร่างกายเมื่ออยู่ที่ทำงาน',
+
         'เมื่อฉันตื่นนอนตอนเช้า ฉันพบว่าฉันไม่มีแรงในการเริ่มต้นวันใหม่',
+
         'ฉันต้องการที่จะทำงานอย่างกระฉับกระเฉง แต่ฉันไม่สามารถจัดการได้',
+
         'เมื่อฉันลงแรงในการทำงาน ฉันรู้สึกเหนื่อยอย่างรวดเร็ว',
+
         'หลังจากการทำงานในแต่ละวัน ฉันรู้สึกเหนื่อยล้าทางจิตใจและหมดแรง'
+
       ]
+
     },
 
+
     {
-      dimension: 'ระยะห่างทางจิตใจ',
-      key: 'mentalDistance',
+
+      dimension:
+        'ระยะห่างทางจิตใจ',
+
+      key:
+        'mentalDistance',
+
       items: [
+
         'ฉันประสบปัญหาในการหาความกระตือรือร้นในการทำงาน',
+
         'ในที่ทำงาน ฉันไม่ค่อยคิดถึงสิ่งที่ฉันกำลังทำและฉันก็จะปล่อยให้ตัวเองทำงานไปตามอัตโนมัติ',
+
         'ฉันรู้สึกว่าฉันไม่ชอบงานที่ฉันทำอย่างมาก',
+
         'ฉันรู้สึกเฉย ๆ กับงานของฉัน',
+
         'ฉันมองว่างานที่ฉันทำไม่ได้มีความหมายต่อผู้อื่นขนาดนั้น'
+
       ]
+
     },
 
+
     {
-      dimension: 'ความบกพร่องทางด้านความคิด',
-      key: 'cognitive',
+
+      dimension:
+        'ความบกพร่องทางด้านความคิด',
+
+      key:
+        'cognitive',
+
       items: [
+
         'ฉันมีปัญหาเกี่ยวกับการมีสมาธิในที่ทำงาน',
+
         'ฉันมีปัญหาในการใช้ความคิดให้ชัดเจนในที่ทำงาน',
+
         'ฉันมักจะหลงลืมและว่อกแว่กในการทำงานของฉัน',
+
         'ในขณะที่ฉันทำงาน ฉันมีปัญหาในการจดจ่อในงาน',
+
         'ฉันทำงานผิดพลาดเพราะฉันใจลอยไปคิดเรื่องอื่น'
+
       ]
+
     },
 
+
     {
-      dimension: 'ความบกพร่องทางอารมณ์',
-      key: 'emotional',
+
+      dimension:
+        'ความบกพร่องทางอารมณ์',
+
+      key:
+        'emotional',
+
       items: [
+
         'ฉันรู้สึกว่าไม่สามารถควบคุมอารมณ์ของตัวเองได้ในที่ทำงาน',
+
         'ฉันรู้สึกไม่เป็นตัวของตัวเองจากปฏิกิริยาทางอารมณ์ที่เกิดขึ้นในที่ทำงาน',
+
         'ระหว่างการทำงาน ฉันรู้สึกหงุดหงิดเมื่อสิ่งต่าง ๆ ไม่เป็นไปตามที่ฉันต้องการ',
+
         'ฉันรู้สึกหัวเสียกับการทำงานโดยไม่รู้ว่าทำไม',
+
         'ในที่ทำงาน ฉันอาจจะแสดงอารมณ์ออกมากเกินไปโดยไม่ตั้งใจ'
+
       ]
+
     }
 
   ]
 
 };
 
+
+/************************************************************
+ * SECONDARY ITEMS
+ ************************************************************/
 
 const SECONDARY_ITEMS = [
 
@@ -1053,93 +1630,291 @@ const SECONDARY_ITEMS = [
 ];
 
 
+/************************************************************
+ * SCALE
+ ************************************************************/
+
 const SCALE = [
 
   [1, 'ไม่เคย'],
+
   [2, 'นาน ๆ ครั้ง'],
+
   [3, 'บางครั้ง'],
+
   [4, 'บ่อยครั้ง'],
+
   [5, 'ตลอดเวลา']
 
 ];
 
 
 /************************************************************
- * Startup
+ * STARTUP
  ************************************************************/
 
-// ใช้ URL เดิมเพื่อรักษา path ของ GitHub Pages และพารามิเตอร์อื่น
-['12', '23'].forEach(function(version) {
-  const url = new URL(window.location.href);
-  url.searchParams.set('form', version);
-  document.getElementById('bat' + version + 'Link').href = url.href;
-});
+/*
+ * สร้างลิงก์ BAT12 / BAT23
+ * โดยรักษา GitHub Pages path เดิมไว้
+ */
+
+['12', '23']
+  .forEach(
+    function(version) {
+
+      const url =
+        new URL(
+          window.location.href
+        );
+
+      url.searchParams.set(
+        'form',
+        version
+      );
+
+      document
+        .getElementById(
+          'bat' + version + 'Link'
+        )
+        .href =
+          url.href;
+
+    }
+  );
+
 
 if (!INCLUDE_SECONDARY) {
-  document.getElementById('secondarySelectionNote').classList.add('hidden');
-}
 
-if (FORM_VERSION) {
-  const versionLabel = FORM_VERSION === 'BAT12' ? 'BAT-12-TH' : 'BAT-23-TH';
-  const questionCount = FORM_VERSION === 'BAT12' ? 12 : 23;
-  document.getElementById('versionBadge').textContent = versionLabel;
-  document.title = versionLabel + ' | Burnout Assessment Tool';
-  document.getElementById('assessmentTitle').textContent =
-    versionLabel + ' — แบบประเมินหลัก ' + questionCount + ' ข้อ';
-  renderCoreQuestions();
-  renderSecondaryQuestions();
-  document.getElementById('consentSection').classList.remove('hidden');
-} else {
-  document.getElementById('versionBadge').textContent = 'BAT-12-TH / BAT-23-TH';
-  document.getElementById('formSelectionSection').classList.remove('hidden');
-  if (requestedForm !== null) {
-    const message = document.getElementById('formSelectionMessage');
-    message.textContent = 'ลิงก์ระบุฉบับไม่ถูกต้อง กรุณาเลือก BAT-12 หรือ BAT-23 ด้านล่าง';
-    message.classList.remove('hidden');
-  }
+  document
+    .getElementById(
+      'secondarySelectionNote'
+    )
+    .classList.add(
+      'hidden'
+    );
+
 }
 
 
 /************************************************************
- * Render questions
+ * ถ้ามี ?form=12 หรือ ?form=23
+ * ให้เข้าแบบประเมินนั้นโดยตรง
+ ************************************************************/
+
+if (FORM_VERSION) {
+
+
+  const versionLabel =
+
+    FORM_VERSION === 'BAT12'
+
+      ? 'BAT-12-TH'
+
+      : 'BAT-23-TH';
+
+
+  const questionCount =
+
+    FORM_VERSION === 'BAT12'
+
+      ? 12
+
+      : 23;
+
+
+  document
+    .getElementById(
+      'versionBadge'
+    )
+    .textContent =
+      versionLabel;
+
+
+  document.title =
+
+    versionLabel +
+
+    ' | Burnout Assessment Tool';
+
+
+  document
+    .getElementById(
+      'assessmentTitle'
+    )
+    .textContent =
+
+      versionLabel +
+
+      ' — แบบประเมินหลัก ' +
+
+      questionCount +
+
+      ' ข้อ';
+
+
+  renderCoreQuestions();
+
+  renderSecondaryQuestions();
+
+
+  document
+    .getElementById(
+      'consentSection'
+    )
+    .classList.remove(
+      'hidden'
+    );
+
+
+} else {
+
+
+  /********************************************************
+   * ถ้าไม่มี form
+   * จึงค่อยแสดงหน้าเลือก
+   ********************************************************/
+
+  document
+    .getElementById(
+      'versionBadge'
+    )
+    .textContent =
+      'BAT-12-TH / BAT-23-TH';
+
+
+  document
+    .getElementById(
+      'formSelectionSection'
+    )
+    .classList.remove(
+      'hidden'
+    );
+
+
+  if (
+    requestedForm !== null
+  ) {
+
+    const message =
+      document.getElementById(
+        'formSelectionMessage'
+      );
+
+
+    message.textContent =
+      'ลิงก์ระบุฉบับไม่ถูกต้อง กรุณาเลือก BAT-12 หรือ BAT-23 ด้านล่าง';
+
+
+    message.classList.remove(
+      'hidden'
+    );
+
+  }
+
+}
+
+
+/************************************************************
+ * RESTART NOTE
+ *
+ * BAT12 จะแสดง BAT-12
+ * BAT23 จะแสดง BAT-23
+ ************************************************************/
+
+if (FORM_VERSION) {
+
+  const restartNote =
+    document.getElementById(
+      'restartNote'
+    );
+
+
+  restartNote.textContent =
+
+    FORM_VERSION === 'BAT12'
+
+      ? 'เริ่มทำ BAT-12-TH ใหม่อีกครั้ง'
+
+      : 'เริ่มทำ BAT-23-TH ใหม่อีกครั้ง';
+
+}
+
+
+/************************************************************
+ * RENDER CORE QUESTIONS
  ************************************************************/
 
 function renderCoreQuestions() {
 
   const target =
-    document.getElementById('coreQuestions');
-
-  let questionNumber = 1;
-
-  QUESTION_SETS[FORM_VERSION]
-    .forEach(function(group) {
-
-      const heading =
-        document.createElement('h3');
-
-      heading.textContent =
-        group.dimension;
-
-      target.appendChild(heading);
+    document.getElementById(
+      'coreQuestions'
+    );
 
 
-      group.items.forEach(function(text) {
+  let questionNumber =
+    1;
+
+
+  QUESTION_SETS[
+    FORM_VERSION
+  ]
+    .forEach(
+      function(group) {
+
+
+        const heading =
+          document.createElement(
+            'h3'
+          );
+
+
+        heading.textContent =
+          group.dimension;
+
 
         target.appendChild(
-          createQuestion(
-            'q' + questionNumber,
-            questionNumber + '. ' + text,
-            true
-          )
+          heading
         );
 
-        questionNumber++;
 
-      });
+        group.items
+          .forEach(
+            function(text) {
 
-    });
+
+              target.appendChild(
+
+                createQuestion(
+
+                  'q' +
+                  questionNumber,
+
+                  questionNumber +
+                  '. ' +
+                  text,
+
+                  true
+
+                )
+
+              );
+
+
+              questionNumber++;
+
+            }
+          );
+
+      }
+    );
+
 }
 
+
+/************************************************************
+ * RENDER SECONDARY
+ ************************************************************/
 
 function renderSecondaryQuestions() {
 
@@ -1148,32 +1923,57 @@ function renderSecondaryQuestions() {
       'secondarySection'
     );
 
+
   if (!INCLUDE_SECONDARY) {
 
-    section.classList.add('hidden');
+    section.classList.add(
+      'hidden'
+    );
 
     return;
+
   }
+
 
   const target =
     document.getElementById(
       'secondaryQuestions'
     );
 
-  SECONDARY_ITEMS.forEach(
-    function(text, index) {
 
-      target.appendChild(
-        createQuestion(
-          's' + (index + 1),
-          (index + 1) + '. ' + text,
-          true
-        )
-      );
+  SECONDARY_ITEMS
+    .forEach(
+      function(
+        text,
+        index
+      ) {
 
-    });
+        target.appendChild(
+
+          createQuestion(
+
+            's' +
+            (index + 1),
+
+            (index + 1) +
+            '. ' +
+            text,
+
+            true
+
+          )
+
+        );
+
+      }
+    );
+
 }
 
+
+/************************************************************
+ * CREATE QUESTION
+ ************************************************************/
 
 function createQuestion(
   name,
@@ -1182,92 +1982,178 @@ function createQuestion(
 ) {
 
   const fieldset =
-    document.createElement('fieldset');
+    document.createElement(
+      'fieldset'
+    );
 
-  fieldset.className = 'question';
+
+  fieldset.className =
+    'question';
 
 
   const legend =
-    document.createElement('legend');
+    document.createElement(
+      'legend'
+    );
 
-  legend.textContent = text;
 
-  fieldset.appendChild(legend);
+  legend.textContent =
+    text;
+
+
+  fieldset.appendChild(
+    legend
+  );
 
 
   const scale =
-    document.createElement('div');
-
-  scale.className = 'scale';
-
-
-  SCALE.forEach(function(option) {
-
-    const value = option[0];
-    const labelText = option[1];
-
-    const label =
-      document.createElement('label');
-
-    const input =
-      document.createElement('input');
-
-    input.type = 'radio';
-    input.name = name;
-    input.value = value;
-
-    if (required) {
-      input.required = true;
-    }
-
-    label.appendChild(input);
-
-    label.appendChild(
-      document.createTextNode(
-        value + ' ' + labelText
-      )
+    document.createElement(
+      'div'
     );
 
-    scale.appendChild(label);
 
-  });
+  scale.className =
+    'scale';
 
-  fieldset.appendChild(scale);
+
+  SCALE.forEach(
+    function(option) {
+
+
+      const value =
+        option[0];
+
+
+      const labelText =
+        option[1];
+
+
+      const label =
+        document.createElement(
+          'label'
+        );
+
+
+      const input =
+        document.createElement(
+          'input'
+        );
+
+
+      input.type =
+        'radio';
+
+
+      input.name =
+        name;
+
+
+      input.value =
+        value;
+
+
+      if (required) {
+
+        input.required =
+          true;
+
+      }
+
+
+      label.appendChild(
+        input
+      );
+
+
+      label.appendChild(
+
+        document.createTextNode(
+
+          value +
+          ' ' +
+          labelText
+
+        )
+
+      );
+
+
+      scale.appendChild(
+        label
+      );
+
+    }
+  );
+
+
+  fieldset.appendChild(
+    scale
+  );
+
 
   return fieldset;
+
 }
 
 
 /************************************************************
- * Consent
+ * CONSENT
  ************************************************************/
 
 document
-  .getElementById('startBtn')
+  .getElementById(
+    'startBtn'
+  )
   .addEventListener(
+
     'click',
+
     function() {
 
-      if (!FORM_VERSION) return;
+
+      if (!FORM_VERSION) {
+        return;
+      }
+
 
       const consent =
-        checkedValue('consent');
+        checkedValue(
+          'consent'
+        );
+
 
       const age18 =
-        checkedValue('age18');
+        checkedValue(
+          'age18'
+        );
+
 
       const employee =
-        checkedValue('privateEmployee');
+        checkedValue(
+          'privateEmployee'
+        );
+
 
       const thai =
-        checkedValue('readThai');
+        checkedValue(
+          'readThai'
+        );
 
+
+      /******************************************************
+       * ต้องตอบครบ
+       ******************************************************/
 
       if (
+
         !consent ||
+
         !age18 ||
+
         !employee ||
+
         !thai
+
       ) {
 
         alert(
@@ -1275,41 +2161,74 @@ document
         );
 
         return;
+
       }
 
 
-      if (consent !== 'yes') {
-
-        stopSurvey(
-          'ท่านเลือกไม่เข้าร่วมการวิจัย จึงไม่มีการบันทึกข้อมูลใด ๆ'
-        );
-
-        return;
-      }
-
+      /******************************************************
+       * ไม่ consent
+       ******************************************************/
 
       if (
-        age18 !== 'yes' ||
-        employee !== 'yes' ||
-        thai !== 'yes'
+        consent !== 'yes'
       ) {
 
         stopSurvey(
-          'ขอขอบคุณสำหรับความสนใจ แต่ท่านไม่เข้าเกณฑ์การเข้าร่วมการศึกษานี้ แบบสอบถามจึงสิ้นสุดที่ขั้นตอนนี้'
+
+          'ท่านเลือกไม่เข้าร่วมการวิจัย จึงไม่มีการบันทึกข้อมูลใด ๆ'
+
         );
 
         return;
+
       }
 
 
+      /******************************************************
+       * Eligibility
+       ******************************************************/
+
+      if (
+
+        age18 !== 'yes' ||
+
+        employee !== 'yes' ||
+
+        thai !== 'yes'
+
+      ) {
+
+        stopSurvey(
+
+          'ขอขอบคุณสำหรับความสนใจ แต่ท่านไม่เข้าเกณฑ์การเข้าร่วมการศึกษานี้ แบบสอบถามจึงสิ้นสุดที่ขั้นตอนนี้'
+
+        );
+
+        return;
+
+      }
+
+
+      /******************************************************
+       * เปิด Questionnaire
+       ******************************************************/
+
       document
-        .getElementById('consentSection')
-        .classList.add('hidden');
+        .getElementById(
+          'consentSection'
+        )
+        .classList.add(
+          'hidden'
+        );
 
 
       document
-        .getElementById('assessmentForm')
-        .classList.remove('hidden');
+        .getElementById(
+          'assessmentForm'
+        )
+        .classList.remove(
+          'hidden'
+        );
 
 
       window.scrollTo({
@@ -1318,62 +2237,113 @@ document
       });
 
     }
+
   );
 
+
+/************************************************************
+ * CHECKED VALUE
+ ************************************************************/
 
 function checkedValue(name) {
 
   const selected =
     document.querySelector(
+
       'input[name="' +
+
       name +
+
       '"]:checked'
+
     );
 
+
   return selected
+
     ? selected.value
+
     : null;
-}
 
-
-function stopSurvey(message) {
-
-  document
-    .getElementById('consentSection')
-    .classList.add('hidden');
-
-  document
-    .getElementById('assessmentForm')
-    .classList.add('hidden');
-
-  document
-    .getElementById('stopMessage')
-    .textContent = message;
-
-  document
-    .getElementById('stopSection')
-    .classList.remove('hidden');
 }
 
 
 /************************************************************
- * Submit
+ * STOP SURVEY
+ ************************************************************/
+
+function stopSurvey(message) {
+
+  document
+    .getElementById(
+      'consentSection'
+    )
+    .classList.add(
+      'hidden'
+    );
+
+
+  document
+    .getElementById(
+      'assessmentForm'
+    )
+    .classList.add(
+      'hidden'
+    );
+
+
+  document
+    .getElementById(
+      'stopMessage'
+    )
+    .textContent =
+      message;
+
+
+  document
+    .getElementById(
+      'stopSection'
+    )
+    .classList.remove(
+      'hidden'
+    );
+
+}
+
+
+/************************************************************
+ * SUBMIT
  ************************************************************/
 
 document
-  .getElementById('assessmentForm')
+  .getElementById(
+    'assessmentForm'
+  )
   .addEventListener(
+
     'submit',
+
     async function(event) {
 
+
       event.preventDefault();
-      if (!FORM_VERSION) return;
-
-      const form = event.currentTarget;
 
 
-      if (!form.reportValidity()) {
+      if (!FORM_VERSION) {
         return;
+      }
+
+
+      const form =
+        event.currentTarget;
+
+
+      if (
+        !form.reportValidity()
+      ) {
+
+        return;
+
       }
 
 
@@ -1382,22 +2352,40 @@ document
           'submitBtn'
         );
 
-      submitBtn.disabled = true;
+
+      submitBtn.disabled =
+        true;
+
+
       submitBtn.textContent =
         'กำลังส่งข้อมูล...';
 
 
       const formData =
-        new FormData(form);
+        new FormData(
+          form
+        );
 
+
+      /******************************************************
+       * NUMBER OF CORE QUESTIONS
+       ******************************************************/
 
       const questionCount =
+
         FORM_VERSION === 'BAT12'
+
           ? 12
+
           : 23;
 
 
+      /******************************************************
+       * CORE ANSWERS
+       ******************************************************/
+
       const answers = {};
+
 
       for (
         let i = 1;
@@ -1405,16 +2393,31 @@ document
         i++
       ) {
 
-        answers['q' + i] =
+        answers[
+          'q' + i
+        ] =
+
           Number(
-            formData.get('q' + i)
+
+            formData.get(
+              'q' + i
+            )
+
           );
+
       }
 
 
+      /******************************************************
+       * SECONDARY
+       ******************************************************/
+
       const secondary = {};
 
-      if (INCLUDE_SECONDARY) {
+
+      if (
+        INCLUDE_SECONDARY
+      ) {
 
         for (
           let i = 1;
@@ -1422,69 +2425,113 @@ document
           i++
         ) {
 
-          secondary['s' + i] =
+          secondary[
+            's' + i
+          ] =
+
             Number(
-              formData.get('s' + i)
+
+              formData.get(
+                's' + i
+              )
+
             );
+
         }
+
       }
 
 
+      /******************************************************
+       * DEMOGRAPHICS
+       ******************************************************/
+
       const demographics = {
 
+
         sex:
-          formData.get('sex'),
+          formData.get(
+            'sex'
+          ),
+
 
         age_group:
-          formData.get('age_group'),
+          formData.get(
+            'age_group'
+          ),
+
 
         education:
-          formData.get('education'),
+          formData.get(
+            'education'
+          ),
+
 
         work_tenure:
-          formData.get('work_tenure'),
+          formData.get(
+            'work_tenure'
+          ),
+
 
         industry:
-          formData.get('industry'),
+          formData.get(
+            'industry'
+          ),
+
 
         industry_other:
           formData.get(
             'industry_other'
           ),
 
+
         employment_status:
           formData.get(
             'employment_status'
           ),
+
 
         employment_other:
           formData.get(
             'employment_other'
           ),
 
+
         job_level:
-          formData.get('job_level'),
+          formData.get(
+            'job_level'
+          ),
+
 
         job_level_other:
           formData.get(
             'job_level_other'
           ),
 
+
         region:
-          formData.get('region'),
+          formData.get(
+            'region'
+          ),
+
 
         income:
-          formData.get('income'),
+          formData.get(
+            'income'
+          ),
+
 
         work_days_week:
           formData.get(
             'work_days_week'
           ),
 
+
         company_size:
           formData.get(
             'company_size'
           ),
+
 
         marital_status:
           formData.get(
@@ -1494,98 +2541,175 @@ document
       };
 
 
-      const scores =
-        calculateScores(answers);
+      /******************************************************
+       * CALCULATE SCORE
+       ******************************************************/
 
+      const scores =
+        calculateScores(
+          answers
+        );
+
+
+      /******************************************************
+       * PAYLOAD
+       *
+       * form_version สำคัญ:
+       *
+       * BAT12 -> Code.gs -> Sheet BAT12
+       * BAT23 -> Code.gs -> Sheet BAT23
+       ******************************************************/
 
       const payload = {
+
 
         response_id:
           createResponseId(),
 
+
         form_version:
           FORM_VERSION,
 
-        client_submitted_at:
-          new Date().toISOString(),
 
-        consent: true,
+        client_submitted_at:
+          new Date()
+            .toISOString(),
+
+
+        consent:
+          true,
+
 
         eligibility: {
-          age18: true,
-          privateEmployee: true,
-          readThai: true
+
+          age18:
+            true,
+
+          privateEmployee:
+            true,
+
+          readThai:
+            true
+
         },
 
-        answers: answers,
 
-        secondary: secondary,
+        answers:
+          answers,
 
-        demographics: demographics,
+
+        secondary:
+          secondary,
+
+
+        demographics:
+          demographics,
+
 
         honeypot:
+
           document
             .getElementById(
               'website'
-            ).value
+            )
+            .value
 
       };
 
 
+      /******************************************************
+       * SEND TO APPS SCRIPT
+       ******************************************************/
+
       try {
 
+
         await fetch(
+
           APP_SCRIPT_URL,
+
           {
 
-            method: 'POST',
+            method:
+              'POST',
 
-            mode: 'no-cors',
+            mode:
+              'no-cors',
 
-            cache: 'no-store',
+            cache:
+              'no-store',
 
             headers: {
+
               'Content-Type':
                 'text/plain;charset=utf-8'
+
             },
 
             body:
-              JSON.stringify(payload)
+              JSON.stringify(
+                payload
+              )
 
           }
+
         );
 
 
-        showResult(scores);
+        showResult(
+          scores
+        );
 
 
       } catch (error) {
 
-        console.error(error);
 
-        alert(
-          'ไม่สามารถส่งข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่อีกครั้ง'
+        console.error(
+          error
         );
 
-        submitBtn.disabled = false;
+
+        alert(
+
+          'ไม่สามารถส่งข้อมูลได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองใหม่อีกครั้ง'
+
+        );
+
+
+        submitBtn.disabled =
+          false;
+
+
         submitBtn.textContent =
           'ส่งแบบประเมินและดูผล';
+
       }
 
     }
+
   );
 
 
 /************************************************************
- * Score calculation - browser side
+ * SCORE CALCULATION
+ *
+ * ใช้สูตรเดิม
  ************************************************************/
 
-function calculateScores(answers) {
+function calculateScores(
+  answers
+) {
 
   let groups;
 
 
-  if (FORM_VERSION === 'BAT12') {
+  /********************************************************
+   * BAT12
+   ********************************************************/
+
+  if (
+    FORM_VERSION === 'BAT12'
+  ) {
 
     groups = {
 
@@ -1602,6 +2726,11 @@ function calculateScores(answers) {
         [10, 11, 12]
 
     };
+
+
+  /********************************************************
+   * BAT23
+   ********************************************************/
 
   } else {
 
@@ -1620,41 +2749,72 @@ function calculateScores(answers) {
         [19,20,21,22,23]
 
     };
+
   }
 
+
+  /********************************************************
+   * MEAN DIMENSION
+   ********************************************************/
 
   function mean(numbers) {
 
     const total =
+
       numbers.reduce(
-        function(sum, number) {
+
+        function(
+          sum,
+          number
+        ) {
 
           return (
+
             sum +
+
             Number(
+
               answers[
                 'q' + number
               ]
+
             )
+
           );
 
         },
+
         0
+
       );
 
+
     return round2(
-      total / numbers.length
+
+      total /
+      numbers.length
+
     );
+
   }
 
 
+  /********************************************************
+   * OVERALL SCORE
+   ********************************************************/
+
   const totalQuestions =
+
     FORM_VERSION === 'BAT12'
+
       ? 12
+
       : 23;
 
 
-  let total = 0;
+  let total =
+    0;
+
 
   for (
     let i = 1;
@@ -1663,46 +2823,81 @@ function calculateScores(answers) {
   ) {
 
     total +=
+
       Number(
-        answers['q' + i]
+
+        answers[
+          'q' + i
+        ]
+
       );
+
   }
 
 
   const overall =
     round2(
-      total / totalQuestions
+
+      total /
+      totalQuestions
+
     );
 
 
   const result = {
 
-    overall: overall,
+
+    overall:
+      overall,
+
 
     exhaustion:
-      mean(groups.exhaustion),
+      mean(
+        groups.exhaustion
+      ),
+
 
     mentalDistance:
-      mean(groups.mentalDistance),
+      mean(
+        groups.mentalDistance
+      ),
+
 
     cognitive:
-      mean(groups.cognitive),
+      mean(
+        groups.cognitive
+      ),
+
 
     emotional:
-      mean(groups.emotional)
+      mean(
+        groups.emotional
+      )
 
   };
 
 
-  if (FORM_VERSION === 'BAT12') {
+  /********************************************************
+   * BAT12 CUT-OFF
+   *
+   * คงตามเดิม
+   ********************************************************/
 
-    if (overall <= 2.50) {
+  if (
+    FORM_VERSION === 'BAT12'
+  ) {
+
+
+    if (
+      overall <= 2.50
+    ) {
 
       result.risk =
         'LOW';
 
       result.riskLabel =
         'เสี่ยงต่ำ';
+
 
     } else if (
       overall < 3.50
@@ -1714,6 +2909,7 @@ function calculateScores(answers) {
       result.riskLabel =
         'เสี่ยงปานกลาง';
 
+
     } else {
 
       result.risk =
@@ -1721,17 +2917,29 @@ function calculateScores(answers) {
 
       result.riskLabel =
         'เสี่ยงสูง';
+
     }
+
+
+  /********************************************************
+   * BAT23 CUT-OFF
+   *
+   * คงตามเดิม
+   ********************************************************/
 
   } else {
 
-    if (overall < 2.59) {
+
+    if (
+      overall < 2.59
+    ) {
 
       result.risk =
         'LOW';
 
       result.riskLabel =
         'เสี่ยงต่ำ';
+
 
     } else if (
       overall < 3.02
@@ -1743,6 +2951,7 @@ function calculateScores(answers) {
       result.riskLabel =
         'เสี่ยงปานกลาง';
 
+
     } else {
 
       result.risk =
@@ -1750,47 +2959,77 @@ function calculateScores(answers) {
 
       result.riskLabel =
         'เสี่ยงสูง';
+
     }
+
   }
 
 
   return result;
-}
 
-
-function round2(value) {
-
-  return (
-    Math.round(
-      (
-        Number(value) +
-        Number.EPSILON
-      ) * 100
-    ) / 100
-  );
 }
 
 
 /************************************************************
- * Result display
+ * ROUND 2
  ************************************************************/
 
-function showResult(scores) {
+function round2(value) {
+
+  return (
+
+    Math.round(
+
+      (
+
+        Number(value) +
+
+        Number.EPSILON
+
+      ) * 100
+
+    ) / 100
+
+  );
+
+}
+
+
+/************************************************************
+ * SHOW RESULT
+ ************************************************************/
+
+function showResult(
+  scores
+) {
+
 
   document
     .getElementById(
       'assessmentForm'
     )
-    .classList.add('hidden');
+    .classList.add(
+      'hidden'
+    );
 
+
+  /********************************************************
+   * OVERALL
+   ********************************************************/
 
   document
     .getElementById(
       'overallScore'
     )
     .textContent =
-      scores.overall.toFixed(2);
 
+      scores.overall
+        .toFixed(2);
+
+
+  /********************************************************
+   * RISK BADGE
+   ********************************************************/
 
   const risk =
     document.getElementById(
@@ -1802,14 +3041,18 @@ function showResult(scores) {
     scores.riskLabel;
 
 
-  risk.className = 'risk';
+  risk.className =
+    'risk';
 
 
-  if (scores.risk === 'LOW') {
+  if (
+    scores.risk === 'LOW'
+  ) {
 
     risk.classList.add(
       'risk-low'
     );
+
 
   } else if (
     scores.risk === 'MODERATE'
@@ -1819,34 +3062,52 @@ function showResult(scores) {
       'risk-moderate'
     );
 
+
   } else {
 
     risk.classList.add(
       'risk-high'
     );
+
   }
 
+
+  /********************************************************
+   * DIMENSIONS
+   ********************************************************/
 
   const dimensions = [
 
     [
+
       'ความเหนื่อยล้า',
+
       scores.exhaustion
+
     ],
 
     [
+
       'ระยะห่างทางจิตใจ',
+
       scores.mentalDistance
+
     ],
 
     [
+
       'ความบกพร่องทางด้านความคิด',
+
       scores.cognitive
+
     ],
 
     [
+
       'ความบกพร่องทางอารมณ์',
+
       scores.emotional
+
     ]
 
   ];
@@ -1858,14 +3119,20 @@ function showResult(scores) {
     );
 
 
-  target.innerHTML = '';
+  target.innerHTML =
+    '';
 
 
   dimensions.forEach(
+
     function(item) {
 
+
       const wrapper =
-        document.createElement('div');
+        document.createElement(
+          'div'
+        );
+
 
       wrapper.className =
         'dimension';
@@ -1875,7 +3142,9 @@ function showResult(scores) {
 
         <div class="dimension-head">
 
-          <span>${item[0]}</span>
+          <span>
+            ${item[0]}
+          </span>
 
           <strong>
             ${item[1].toFixed(2)}
@@ -1883,12 +3152,14 @@ function showResult(scores) {
 
         </div>
 
+
         <div class="bar">
 
-          <div style="
-            width:
-            ${(item[1] / 5) * 100}%
-          ">
+          <div
+            style="
+              width:
+              ${(item[1] / 5) * 100}%
+            ">
           </div>
 
         </div>
@@ -1901,73 +3172,173 @@ function showResult(scores) {
       );
 
     }
+
   );
 
+
+  /********************************************************
+   * SHOW RESULT
+   ********************************************************/
 
   document
     .getElementById(
       'resultSection'
     )
-    .classList.remove('hidden');
+    .classList.remove(
+      'hidden'
+    );
 
 
   window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
+
+    top:
+      0,
+
+    behavior:
+      'smooth'
+
   });
+
 }
 
 
 /************************************************************
- * Restart / Back to form selection
+ * RESTART ASSESSMENT
+ *
+ * จุดสำคัญของ version นี้
+ *
+ * ถ้ามาจาก:
+ *
+ * ?form=12
+ *
+ * กดทำใหม่ ->
+ * กลับ ?form=12
+ *
+ *
+ * ถ้ามาจาก:
+ *
+ * ?form=23
+ *
+ * กดทำใหม่ ->
+ * กลับ ?form=23
+ *
+ * จะไม่กลับไปหน้าเลือกแบบประเมิน
  ************************************************************/
 
 document
-  .getElementById('restartBtn')
+  .getElementById(
+    'restartBtn'
+  )
   .addEventListener(
+
     'click',
+
     function() {
 
-      // ใช้ URL ปัจจุบัน เพื่อรองรับ GitHub Pages
-      // และคง path ของ repository เดิมไว้
+
+      if (!FORM_VERSION) {
+        return;
+      }
+
+
+      /*
+       * เอา URL ปัจจุบัน
+       *
+       * ทำให้ใช้ได้กับ GitHub Pages
+       * แม้ repository จะมี path
+       */
+
       const url =
-        new URL(window.location.href);
+        new URL(
+          window.location.href
+        );
 
-      // ลบเฉพาะ parameter ที่ใช้เลือกแบบประเมิน
-      url.searchParams.delete('form');
 
-      // กลับไปหน้าเลือก BAT-12-TH / BAT-23-TH
+      /******************************************************
+       * BAT12
+       ******************************************************/
+
+      if (
+        FORM_VERSION === 'BAT12'
+      ) {
+
+        url.searchParams.set(
+          'form',
+          '12'
+        );
+
+
+      /******************************************************
+       * BAT23
+       ******************************************************/
+
+      } else {
+
+        url.searchParams.set(
+          'form',
+          '23'
+        );
+
+      }
+
+
+      /*
+       * Reload แบบประเมินเดิม
+       * ทำให้ข้อมูลหน้าเก่าถูก reset
+       */
+
       window.location.href =
         url.href;
+
     }
+
   );
 
 
 /************************************************************
- * Random response ID
+ * RANDOM RESPONSE ID
  ************************************************************/
 
 function createResponseId() {
 
+
   if (
+
     window.crypto &&
+
     crypto.randomUUID
+
   ) {
 
     return crypto.randomUUID();
+
   }
 
 
   return (
-    Date.now().toString(36) +
-    '-' +
+
+    Date.now()
+      .toString(36)
+
+    +
+
+    '-'
+
+    +
+
     Math.random()
       .toString(36)
-      .substring(2, 12)
+      .substring(
+        2,
+        12
+      )
+
   );
+
 }
 
 </script>
 
 </body>
+
 </html>
