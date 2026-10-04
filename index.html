@@ -2,6 +2,7 @@
 <html lang="th">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -11,339 +12,943 @@
 
   <title>Burnout Assessment Tool</title>
 
+
   <style>
 
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       font-family:
         "Noto Sans Thai",
         "Tahoma",
         sans-serif;
 
       background: #f5f6f8;
+
       color: #222;
+
       line-height: 1.65;
+
     }
+
 
     .container {
+
       max-width: 900px;
+
       margin: auto;
-      padding: 24px 16px 60px;
+
+      padding:
+        24px
+        16px
+        60px;
+
     }
+
 
     .header {
+
       background: white;
+
       padding: 28px;
+
       border-radius: 16px;
+
       margin-bottom: 20px;
-      border: 1px solid #e4e6eb;
+
+      border:
+        1px solid
+        #e4e6eb;
+
     }
+
 
     h1 {
-      margin: 0 0 6px;
+
+      margin:
+        0
+        0
+        6px;
+
       font-size: 28px;
+
     }
+
 
     h2 {
+
       margin-top: 0;
+
     }
+
 
     h3 {
+
       margin-top: 32px;
+
     }
+
 
     .badge {
+
       display: inline-block;
-      padding: 5px 12px;
+
+      padding:
+        5px
+        12px;
+
       border-radius: 20px;
+
       background: #eef2f7;
+
       margin-top: 8px;
+
       font-weight: 600;
+
     }
+
 
     .card {
+
       background: white;
+
       border-radius: 16px;
-      border: 1px solid #e4e6eb;
+
+      border:
+        1px solid
+        #e4e6eb;
+
       padding: 26px;
+
       margin-bottom: 18px;
+
     }
+
+
+    /* =========================================
+       Consent scroll box
+       ========================================= */
 
     .consent-box {
-      max-height: 360px;
+
+      max-height: 520px;
+
       overflow-y: auto;
+
       background: #fafafa;
-      border: 1px solid #ddd;
-      padding: 20px;
+
+      border:
+        1px solid
+        #ddd;
+
+      padding: 22px;
+
       border-radius: 12px;
+
       margin-bottom: 24px;
+
     }
+
+
+    /* =========================================
+       Research information
+       ========================================= */
+
+    .research-info {
+
+      color: #2b2b2b;
+
+      line-height: 1.75;
+
+    }
+
+
+    /* Principal Investigator */
+
+    .research-contact {
+
+      background: #f5f7fa;
+
+      border:
+        1px solid
+        #e0e4e8;
+
+      border-left:
+        4px solid
+        #333;
+
+      border-radius: 10px;
+
+      padding:
+        18px
+        20px;
+
+      margin-bottom: 28px;
+
+    }
+
+
+    .research-contact-title {
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      color: #666;
+
+      margin-bottom: 4px;
+
+    }
+
+
+    .research-contact-name {
+
+      font-size: 18px;
+
+      font-weight: 700;
+
+      color: #222;
+
+    }
+
+
+    .research-email {
+
+      margin-top: 8px;
+
+      font-size: 14px;
+
+    }
+
+
+    .research-email a {
+
+      color: #333;
+
+      font-weight: 600;
+
+    }
+
+
+    /* Research sections */
+
+    .research-section {
+
+      padding:
+        4px
+        0
+        20px;
+
+      margin-bottom: 18px;
+
+      border-bottom:
+        1px solid
+        #e8e8e8;
+
+    }
+
+
+    .research-section h3 {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      margin:
+        8px
+        0
+        12px;
+
+      font-size: 18px;
+
+      color: #222;
+
+    }
+
+
+    .section-number {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      flex-shrink: 0;
+
+      min-width: 30px;
+
+      height: 30px;
+
+      border-radius: 50%;
+
+      background: #222;
+
+      color: white;
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+    }
+
+
+    .research-section p {
+
+      margin:
+        8px
+        0
+        12px;
+
+    }
+
+
+    .research-section ul {
+
+      margin:
+        8px
+        0
+        14px;
+
+      padding-left: 24px;
+
+    }
+
+
+    .research-section li {
+
+      margin-bottom: 5px;
+
+    }
+
+
+    /* Final consent highlight */
+
+    .consent-highlight {
+
+      margin-top: 24px;
+
+      padding:
+        18px
+        20px;
+
+      background: #fff8e5;
+
+      border:
+        1px solid
+        #eadcae;
+
+      border-radius: 10px;
+
+    }
+
+
+    .consent-highlight strong {
+
+      display: block;
+
+      margin-bottom: 5px;
+
+      font-size: 16px;
+
+    }
+
+
+    .consent-highlight p {
+
+      margin: 0;
+
+    }
+
+
+    /* =========================================
+       Questions
+       ========================================= */
 
     .question {
+
       border: 0;
-      border-bottom: 1px solid #eee;
-      padding: 22px 0;
+
+      border-bottom:
+        1px solid
+        #eee;
+
+      padding:
+        22px
+        0;
+
       margin: 0;
+
     }
+
 
     .question legend {
+
       font-weight: 600;
+
       margin-bottom: 14px;
+
       width: 100%;
+
     }
+
 
     .scale {
+
       display: grid;
+
       grid-template-columns:
-        repeat(5, minmax(80px, 1fr));
+        repeat(
+          5,
+          minmax(
+            80px,
+            1fr
+          )
+        );
+
       gap: 7px;
+
     }
+
 
     .scale label {
-      border: 1px solid #ddd;
+
+      border:
+        1px solid
+        #ddd;
+
       border-radius: 10px;
-      padding: 10px 6px;
+
+      padding:
+        10px
+        6px;
+
       text-align: center;
+
       cursor: pointer;
+
       font-size: 14px;
+
       background: white;
+
     }
+
 
     .scale label:hover {
+
       background: #f3f5f8;
+
     }
+
 
     .scale input {
+
       display: block;
-      margin: 0 auto 5px;
+
+      margin:
+        0
+        auto
+        5px;
+
     }
+
+
+    /* =========================================
+       Form
+       ========================================= */
 
     .form-group {
+
       margin-bottom: 20px;
+
     }
 
+
     .form-group > label {
+
       display: block;
+
       margin-bottom: 7px;
+
       font-weight: 600;
+
     }
+
 
     select,
     input[type="text"] {
+
       width: 100%;
+
       padding: 12px;
+
       font-size: 16px;
+
       border-radius: 9px;
-      border: 1px solid #ccc;
+
+      border:
+        1px solid
+        #ccc;
+
       background: white;
+
     }
+
+
+    .radio-line {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px 24px;
+
+    }
+
 
     .radio-line label {
-      margin-right: 24px;
+
+      cursor: pointer;
+
     }
+
+
+    /* =========================================
+       Buttons
+       ========================================= */
 
     button {
+
       border: 0;
+
       border-radius: 10px;
-      padding: 13px 22px;
+
+      padding:
+        13px
+        22px;
+
       font-size: 16px;
+
       cursor: pointer;
+
       font-weight: 600;
+
     }
+
 
     .btn-primary {
+
       background: #222;
+
       color: white;
+
     }
+
 
     .btn-primary:disabled {
+
       opacity: .5;
+
       cursor: not-allowed;
+
     }
+
 
     .btn-secondary {
+
       background: white;
+
       color: #222;
-      border: 1px solid #bbb;
+
+      border:
+        1px solid
+        #bbb;
+
     }
+
 
     .btn-secondary:hover {
+
       background: #f3f5f8;
+
     }
+
+
+    /* =========================================
+       Form selection
+       ========================================= */
 
     .form-options {
+
       display: grid;
+
       grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(
+          2,
+          minmax(
+            0,
+            1fr
+          )
+        );
+
       gap: 14px;
-      margin: 20px 0;
+
+      margin:
+        20px
+        0;
+
     }
 
+
     .form-option {
+
       display: flex;
+
       flex-direction: column;
+
       gap: 6px;
 
       padding: 22px;
 
-      border: 1px solid #ccc;
+      border:
+        1px solid
+        #ccc;
+
       border-radius: 12px;
 
       color: #222;
+
       text-decoration: none;
 
       background: #fafafa;
+
     }
+
 
     .form-option strong {
+
       font-size: 22px;
+
     }
+
 
     .form-option:hover {
+
       background: #eef2f7;
+
       border-color: #555;
+
     }
+
 
     .form-option:focus-visible {
-      outline: 3px solid #555;
+
+      outline:
+        3px solid
+        #555;
+
       outline-offset: 3px;
+
     }
+
+
+    /* =========================================
+       Utility
+       ========================================= */
 
     .hidden {
+
       display: none !important;
+
     }
+
 
     .notice {
+
       background: #fff8e5;
+
       padding: 15px;
+
       border-radius: 10px;
-      margin: 15px 0;
+
+      margin:
+        15px
+        0;
+
     }
+
+
+    /* =========================================
+       Result
+       ========================================= */
 
     .result-card {
+
       text-align: center;
+
     }
+
 
     .score-big {
+
       font-size: 52px;
+
       font-weight: 700;
+
       line-height: 1;
-      margin: 20px 0 8px;
+
+      margin:
+        20px
+        0
+        8px;
+
     }
+
 
     .risk {
+
       display: inline-block;
-      padding: 8px 20px;
+
+      padding:
+        8px
+        20px;
+
       border-radius: 30px;
+
       font-weight: 700;
+
       margin-bottom: 24px;
+
     }
+
 
     .risk-low {
+
       background: #ddf6e7;
+
       color: #176b3b;
+
     }
+
 
     .risk-moderate {
+
       background: #fff1d6;
+
       color: #885000;
+
     }
+
 
     .risk-high {
+
       background: #ffe1e1;
+
       color: #a02020;
+
     }
+
 
     .dimension {
+
       text-align: left;
-      margin: 18px 0;
+
+      margin:
+        18px
+        0;
+
     }
+
 
     .dimension-head {
+
       display: flex;
+
       justify-content: space-between;
+
       margin-bottom: 5px;
+
     }
+
 
     .bar {
+
       height: 9px;
+
       border-radius: 10px;
+
       background: #eee;
+
       overflow: hidden;
+
     }
+
 
     .bar > div {
+
       height: 100%;
+
       background: #555;
+
     }
+
 
     .disclaimer {
+
       margin-top: 30px;
+
       font-size: 14px;
+
       color: #666;
+
       background: #f7f7f7;
+
       padding: 16px;
+
       border-radius: 10px;
+
     }
+
 
     .result-actions {
+
       margin-top: 28px;
+
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       gap: 8px;
+
     }
+
 
     .result-actions-note {
+
       margin: 0;
+
       font-size: 14px;
+
       color: #666;
+
     }
 
+
+    /* Honeypot */
+
     .honeypot {
+
       position: absolute;
+
       left: -9999px;
+
     }
+
+
+    /* =========================================
+       Mobile
+       ========================================= */
 
     @media (max-width: 650px) {
 
+
       .form-options {
+
         grid-template-columns: 1fr;
+
       }
+
 
       .scale {
+
         grid-template-columns: 1fr;
+
       }
+
 
       .scale label {
+
         text-align: left;
+
       }
+
 
       .scale input {
+
         display: inline-block;
+
         margin-right: 8px;
+
       }
 
+
       h1 {
+
         font-size: 23px;
+
       }
+
 
       .card,
       .header {
+
         padding: 20px;
+
+      }
+
+
+      .consent-box {
+
+        padding: 16px;
+
+        max-height: 560px;
+
+      }
+
+
+      .research-contact {
+
+        padding: 16px;
+
+      }
+
+
+      .research-section h3 {
+
+        align-items: flex-start;
+
+        font-size: 17px;
+
+      }
+
+
+      .section-number {
+
+        min-width: 28px;
+
+        height: 28px;
+
       }
 
     }
 
   </style>
+
 </head>
 
 
 <body>
+
 
 <div class="container">
 
@@ -354,47 +959,54 @@
 
   <div class="header">
 
+
     <h1>
+
       Burnout Assessment Tool
+
     </h1>
+
 
     <div
       id="versionBadge"
       class="badge">
     </div>
 
+
     <p>
+
       แบบประเมินภาวะหมดไฟในการทำงาน
+
     </p>
 
+
   </div>
+
 
 
   <!-- ===================================== -->
   <!-- FORM SELECTION -->
   <!-- ===================================== -->
 
-  <!--
-    หน้านี้จะเห็นเฉพาะกรณีเปิด URL หลัก
-    โดยไม่มี ?form=12 หรือ ?form=23
-
-    ผู้เข้าร่วมจริงควรใช้ลิงก์แยก:
-    ?form=12
-    ?form=23
-  -->
-
   <section
     id="formSelectionSection"
     class="card hidden">
 
+
     <h2>
+
       เลือกแบบประเมิน
+
     </h2>
 
+
     <p>
+
       กรุณาเลือกฉบับที่ต้องการทำ
       หรือฉบับที่ผู้วิจัยกำหนดให้ท่าน
+
     </p>
+
 
     <p
       id="formSelectionMessage"
@@ -402,22 +1014,32 @@
       role="alert">
     </p>
 
+
     <div class="form-options">
+
 
       <a
         id="bat12Link"
         class="form-option"
         href="?form=12">
 
+
         <strong>
+
           BAT-12-TH
+
         </strong>
 
+
         <span>
+
           แบบประเมินหลัก 12 ข้อ · 4 ด้าน
+
         </span>
 
+
       </a>
+
 
 
       <a
@@ -425,24 +1047,37 @@
         class="form-option"
         href="?form=23">
 
+
         <strong>
+
           BAT-23-TH
+
         </strong>
 
+
         <span>
+
           แบบประเมินหลัก 23 ข้อ · 4 ด้าน
+
         </span>
+
 
       </a>
 
+
     </div>
 
+
     <p id="secondarySelectionNote">
+
       แต่ละฉบับมีคำถามอาการเพิ่มเติม
       11 ข้อ และข้อมูลทั่วไป
+
     </p>
 
+
   </section>
+
 
 
   <!-- ===================================== -->
@@ -453,61 +1088,474 @@
     id="consentSection"
     class="card hidden">
 
+
     <h2>
+
       ข้อมูลสำหรับผู้เข้าร่วมการวิจัย
+
     </h2>
+
 
 
     <div class="consent-box">
 
-      <!--
-        ให้นำ Participant Information Sheet /
-        Informed Consent Form
-        ฉบับที่ผ่าน EC แล้วมาใส่ตรงนี้
-      -->
 
-      <p>
-
-        <strong>
-          หัวหน้าโครงการวิจัย (Principal Investigator):
-          นางสาวลักคณา เฮ้งบริบูรณ์
-          วิทยาลัยนานาชาติ มหาวิทยาลัยขอนแก่น
-        </strong>
-
-      </p>
+      <div class="research-info">
 
 
-      <p>
-        อีเมลสำหรับติดต่อ (Contact Email): lakkhe@kku.ac.th
-        1. วัตถุประสงค์ของการวิจัย
-        ท่านได้รับเชิญให้เข้าร่วมการวิจัยเกี่ยวกับการประเมินภาวะหมดไฟในการทำงานของพนักงานบริษัทในประเทศไทย การศึกษานี้มีวัตถุประสงค์เพื่อศึกษาคุณสมบัติของแบบประเมินภาวะหมดไฟในการทำงานฉบับภาษาไทยในรูปแบบออนไลน์
-        สำหรับแบบสอบถามฉบับนี้ ท่านจะตอบ Burnout Assessment Tool ฉบับภาษาไทย 12 ข้อ (BAT-12-TH)
-        2. คุณสมบัติของผู้เข้าร่วมการวิจัย
-        ผู้เข้าร่วมต้องมีอายุ 18 ปีขึ้นไป เป็นพนักงานของบริษัทหรือองค์กรภาคเอกชนที่ทำงานอยู่ในประเทศไทย และสามารถอ่านและเข้าใจภาษาไทยได้
-        ก่อนเริ่มตอบแบบประเมิน ท่านจะได้รับคำถามเพื่อคัดกรองคุณสมบัติ หากไม่เป็นไปตามเกณฑ์ที่กำหนด แบบสอบถามจะสิ้นสุดโดยอัตโนมัติ
-        3. ขั้นตอนการเข้าร่วมการวิจัย
-        หากท่านยินยอมเข้าร่วม ท่านจะตอบแบบประเมินออนไลน์ BAT-12-TH เกี่ยวกับประสบการณ์และความรู้สึกที่เกี่ยวข้องกับการทำงาน รวมถึงคำถามเกี่ยวกับข้อมูลทั่วไปและข้อมูลเกี่ยวกับการทำงาน
-        แบบประเมินครอบคลุมด้านความเหนื่อยล้า ระยะห่างทางจิตใจ ความบกพร่องทางด้านความคิด และความบกพร่องทางอารมณ์ โดยไม่มีคำตอบที่ถูกหรือผิด กรุณาตอบตามประสบการณ์และความรู้สึกของท่านตามความเป็นจริง
-        4. การเข้าร่วมโดยสมัครใจและสิทธิในการถอนตัว
-        การเข้าร่วมการวิจัยเป็นไปโดยสมัครใจ ท่านสามารถเลือกไม่เข้าร่วมหรือหยุดตอบแบบสอบถามก่อนส่งคำตอบได้ทุกเมื่อ โดยไม่มีผลกระทบใด ๆ ต่อท่าน
-        5. การรักษาความลับและการใช้ข้อมูล
-        การวิจัยนี้ไม่มีการเก็บข้อมูลที่สามารถระบุตัวตนของผู้เข้าร่วมได้โดยตรง ข้อมูลจะนำไปใช้เพื่อวัตถุประสงค์ทางวิชาการและการวิจัยเท่านั้น และผลการศึกษาจะนำเสนอในภาพรวมโดยไม่เปิดเผยตัวตนของผู้เข้าร่วม ซึ่งสอดคล้องกับรายละเอียดในเอกสารจริยธรรมของโครงการ
-        6. การให้ความยินยอม
-        การเลือก “ข้าพเจ้ายินยอมเข้าร่วมการวิจัย” หมายความว่าท่านยืนยันว่าได้อ่านและเข้าใจข้อมูลข้างต้น เข้าใจวัตถุประสงค์และขั้นตอนของการวิจัย ทราบว่าการเข้าร่วมเป็นไปโดยสมัครใจ และยินยอมให้นำข้อมูลจากแบบสอบถามไปใช้เพื่อการวิเคราะห์และรายงานผลทางวิชาการโดยไม่เปิดเผยตัวตน
-        *  คลิก ** ข้าพเจ้าได้อ่านและเข้าใจข้อมูลข้างต้น และตัดสินใจเข้าร่วมการวิจัยนี้โดยสมัครใจ
+        <!-- ================================= -->
+        <!-- PI -->
+        <!-- ================================= -->
 
-      </p>
+        <div class="research-contact">
+
+
+          <div class="research-contact-title">
+
+            หัวหน้าโครงการวิจัย
+            (Principal Investigator)
+
+          </div>
+
+
+          <div class="research-contact-name">
+
+            นางสาวลักคณา เฮ้งบริบูรณ์
+
+          </div>
+
+
+          <div>
+
+            วิทยาลัยนานาชาติ
+            มหาวิทยาลัยขอนแก่น
+
+          </div>
+
+
+          <div class="research-email">
+
+            อีเมลสำหรับติดต่อ:
+
+            <a href="mailto:lakkhe@kku.ac.th">
+
+              lakkhe@kku.ac.th
+
+            </a>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- 1 OBJECTIVE -->
+        <!-- ================================= -->
+
+        <div class="research-section">
+
+
+          <h3>
+
+            <span class="section-number">
+              1
+            </span>
+
+            วัตถุประสงค์ของการวิจัย
+
+          </h3>
+
+
+          <p>
+
+            ท่านได้รับเชิญให้เข้าร่วมการวิจัย
+            เกี่ยวกับการประเมินภาวะหมดไฟในการทำงาน
+            ของพนักงานบริษัทในประเทศไทย
+
+            การศึกษานี้มีวัตถุประสงค์เพื่อศึกษา
+            คุณสมบัติของแบบประเมินภาวะหมดไฟในการทำงาน
+            ฉบับภาษาไทยในรูปแบบออนไลน์
+
+          </p>
+
+
+          <p>
+
+            สำหรับแบบสอบถามฉบับนี้
+            ท่านจะตอบ
+
+            <strong id="consentFormDescription">
+            </strong>
+
+          </p>
+
+
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- 2 ELIGIBILITY -->
+        <!-- ================================= -->
+
+        <div class="research-section">
+
+
+          <h3>
+
+            <span class="section-number">
+              2
+            </span>
+
+            คุณสมบัติของผู้เข้าร่วมการวิจัย
+
+          </h3>
+
+
+          <p>
+
+            ผู้เข้าร่วมต้องมีคุณสมบัติดังต่อไปนี้
+
+          </p>
+
+
+          <ul>
+
+            <li>
+
+              มีอายุ 18 ปีขึ้นไป
+
+            </li>
+
+
+            <li>
+
+              เป็นพนักงานของบริษัท
+              หรือองค์กรภาคเอกชน
+              ที่ทำงานอยู่ในประเทศไทย
+
+            </li>
+
+
+            <li>
+
+              สามารถอ่านและเข้าใจภาษาไทยได้
+
+            </li>
+
+          </ul>
+
+
+          <p>
+
+            ก่อนเริ่มตอบแบบประเมิน
+            ท่านจะได้รับคำถามเพื่อคัดกรองคุณสมบัติ
+
+            หากไม่เป็นไปตามเกณฑ์ที่กำหนด
+            แบบสอบถามจะสิ้นสุดโดยอัตโนมัติ
+
+          </p>
+
+
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- 3 PROCEDURE -->
+        <!-- ================================= -->
+
+        <div class="research-section">
+
+
+          <h3>
+
+            <span class="section-number">
+              3
+            </span>
+
+            ขั้นตอนการเข้าร่วมการวิจัย
+
+          </h3>
+
+
+          <p>
+
+            หากท่านยินยอมเข้าร่วม
+            ท่านจะตอบแบบประเมินออนไลน์
+
+            <strong id="consentFormShortName">
+            </strong>
+
+            เกี่ยวกับประสบการณ์และความรู้สึก
+            ที่เกี่ยวข้องกับการทำงาน
+
+            รวมถึงคำถามเกี่ยวกับข้อมูลทั่วไป
+            และข้อมูลเกี่ยวกับการทำงาน
+
+          </p>
+
+
+          <p>
+
+            แบบประเมินครอบคลุม 4 ด้าน ได้แก่
+
+          </p>
+
+
+          <ul>
+
+            <li>
+
+              ความเหนื่อยล้า
+
+            </li>
+
+
+            <li>
+
+              ระยะห่างทางจิตใจ
+
+            </li>
+
+
+            <li>
+
+              ความบกพร่องทางด้านความคิด
+
+            </li>
+
+
+            <li>
+
+              ความบกพร่องทางอารมณ์
+
+            </li>
+
+          </ul>
+
+
+          <p>
+
+            แบบประเมินนี้ไม่มีคำตอบที่ถูกหรือผิด
+            กรุณาตอบตามประสบการณ์และความรู้สึก
+            ของท่านตามความเป็นจริง
+
+          </p>
+
+
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- 4 VOLUNTARY -->
+        <!-- ================================= -->
+
+        <div class="research-section">
+
+
+          <h3>
+
+            <span class="section-number">
+              4
+            </span>
+
+            การเข้าร่วมโดยสมัครใจ
+            และสิทธิในการถอนตัว
+
+          </h3>
+
+
+          <p>
+
+            การเข้าร่วมการวิจัยเป็นไปโดยสมัครใจ
+
+            ท่านสามารถเลือกไม่เข้าร่วม
+            หรือหยุดตอบแบบสอบถามก่อนส่งคำตอบ
+            ได้ทุกเมื่อ
+
+            โดยไม่มีผลกระทบใด ๆ ต่อท่าน
+
+          </p>
+
+
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- 5 CONFIDENTIALITY -->
+        <!-- ================================= -->
+
+        <div class="research-section">
+
+
+          <h3>
+
+            <span class="section-number">
+              5
+            </span>
+
+            การรักษาความลับและการใช้ข้อมูล
+
+          </h3>
+
+
+          <p>
+
+            การวิจัยนี้ไม่มีการเก็บข้อมูล
+            ที่สามารถระบุตัวตนของผู้เข้าร่วม
+            ได้โดยตรง
+
+          </p>
+
+
+          <p>
+
+            ข้อมูลจะนำไปใช้เพื่อวัตถุประสงค์
+            ทางวิชาการและการวิจัยเท่านั้น
+
+            และผลการศึกษาจะนำเสนอในภาพรวม
+            โดยไม่เปิดเผยตัวตนของผู้เข้าร่วม
+
+            ซึ่งสอดคล้องกับรายละเอียด
+            ในเอกสารจริยธรรมของโครงการ
+
+          </p>
+
+
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- 6 CONSENT -->
+        <!-- ================================= -->
+
+        <div class="research-section">
+
+
+          <h3>
+
+            <span class="section-number">
+              6
+            </span>
+
+            การให้ความยินยอม
+
+          </h3>
+
+
+          <p>
+
+            การเลือก
+
+            <strong>
+              “ข้าพเจ้ายินยอมเข้าร่วมการวิจัย”
+            </strong>
+
+            หมายความว่าท่านยืนยันว่า
+
+          </p>
+
+
+          <ul>
+
+            <li>
+
+              ได้อ่านและเข้าใจข้อมูลข้างต้น
+
+            </li>
+
+
+            <li>
+
+              เข้าใจวัตถุประสงค์
+              และขั้นตอนของการวิจัย
+
+            </li>
+
+
+            <li>
+
+              ทราบว่าการเข้าร่วม
+              เป็นไปโดยสมัครใจ
+
+            </li>
+
+
+            <li>
+
+              ยินยอมให้นำข้อมูลจากแบบสอบถาม
+              ไปใช้เพื่อการวิเคราะห์
+              และรายงานผลทางวิชาการ
+              โดยไม่เปิดเผยตัวตน
+
+            </li>
+
+          </ul>
+
+
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- FINAL CONFIRMATION -->
+        <!-- ================================= -->
+
+        <div class="consent-highlight">
+
+
+          <strong>
+
+            โปรดอ่านก่อนดำเนินการต่อ
+
+          </strong>
+
+
+          <p>
+
+            การเลือก
+            “ข้าพเจ้ายินยอมเข้าร่วมการวิจัย”
+            ด้านล่าง
+
+            ถือว่าท่านได้อ่านและเข้าใจข้อมูลข้างต้น
+            และตัดสินใจเข้าร่วมการวิจัยนี้
+            โดยสมัครใจ
+
+          </p>
+
+
+        </div>
+
+
+      </div>
+
 
     </div>
 
 
+
+    <!-- ================================= -->
+    <!-- CONSENT QUESTION -->
+    <!-- ================================= -->
+
     <div class="form-group">
 
+
       <label>
+
         การให้ความยินยอม
+
       </label>
 
+
       <div class="radio-line">
+
 
         <label>
 
@@ -532,26 +1580,42 @@
 
         </label>
 
+
       </div>
 
+
     </div>
+
 
 
     <hr>
 
 
+
+    <!-- ================================= -->
+    <!-- ELIGIBILITY -->
+    <!-- ================================= -->
+
     <h3>
+
       การตรวจสอบคุณสมบัติ
+
     </h3>
 
 
+
     <div class="form-group">
 
+
       <label>
+
         ท่านมีอายุ 18 ปีขึ้นไปหรือไม่?
+
       </label>
 
+
       <div class="radio-line">
+
 
         <label>
 
@@ -576,19 +1640,27 @@
 
         </label>
 
+
       </div>
+
 
     </div>
 
 
+
     <div class="form-group">
 
+
       <label>
+
         ท่านเป็นพนักงานของบริษัท
         หรือองค์กรภาคเอกชนหรือไม่?
+
       </label>
 
+
       <div class="radio-line">
+
 
         <label>
 
@@ -613,18 +1685,27 @@
 
         </label>
 
+
       </div>
 
+
     </div>
+
 
 
     <div class="form-group">
 
+
       <label>
-        ท่านสามารถอ่านและเข้าใจภาษาไทยได้หรือไม่?
+
+        ท่านสามารถอ่านและเข้าใจ
+        ภาษาไทยได้หรือไม่?
+
       </label>
 
+
       <div class="radio-line">
+
 
         <label>
 
@@ -649,9 +1730,12 @@
 
         </label>
 
+
       </div>
 
+
     </div>
+
 
 
     <button
@@ -663,7 +1747,9 @@
 
     </button>
 
+
   </section>
+
 
 
   <!-- ===================================== -->
@@ -675,20 +1761,26 @@
     class="hidden">
 
 
-    <!-- ================================= -->
-    <!-- CORE BAT -->
-    <!-- ================================= -->
+
+    <!-- CORE -->
 
     <section class="card">
 
+
       <h2 id="assessmentTitle">
+
         แบบประเมิน
+
       </h2>
 
+
       <p>
+
         กรุณาเลือกคำตอบที่ตรงกับประสบการณ์
         และความรู้สึกของท่านมากที่สุด
+
       </p>
+
 
       <div class="notice">
 
@@ -700,89 +1792,121 @@
 
       </div>
 
+
       <div id="coreQuestions">
       </div>
+
 
     </section>
 
 
-    <!-- ================================= -->
+
     <!-- SECONDARY -->
-    <!-- ================================= -->
 
     <section
       id="secondarySection"
       class="card">
 
+
       <h2>
+
         อาการทางกายเหตุจิต
+
       </h2>
+
 
       <div id="secondaryQuestions">
       </div>
 
+
     </section>
 
 
-    <!-- ================================= -->
+
     <!-- DEMOGRAPHIC -->
-    <!-- ================================= -->
 
     <section class="card">
 
+
       <h2>
+
         ข้อมูลทั่วไป
+
       </h2>
 
 
-      <!-- SEX -->
 
       <div class="form-group">
 
+
         <label>
+
           เพศ
+
         </label>
+
 
         <select
           name="sex"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option value="ชาย">
+
             ชาย
+
           </option>
+
 
           <option value="หญิง">
+
             หญิง
+
           </option>
+
 
           <option value="ไม่ระบุเพศ">
+
             ไม่ระบุเพศ
+
           </option>
 
+
         </select>
+
 
       </div>
 
 
-      <!-- AGE -->
 
       <div class="form-group">
 
+
         <label>
+
           อายุ
+
         </label>
+
 
         <select
           name="age_group"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             18–30 ปี
@@ -804,434 +1928,576 @@
             มากกว่า 60 ปี
           </option>
 
+
         </select>
+
 
       </div>
 
 
-      <!-- EDUCATION -->
 
       <div class="form-group">
 
+
         <label>
+
           ระดับการศึกษา
+
         </label>
+
 
         <select
           name="education"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             ต่ำกว่าปริญญาตรี
           </option>
 
+
           <option>
             ปริญญาตรีหรือเทียบเท่า
           </option>
+
 
           <option>
             ปริญญาโทหรือเทียบเท่า
           </option>
 
+
           <option>
             ปริญญาเอกหรือเทียบเท่า
           </option>
 
+
         </select>
+
 
       </div>
 
 
-      <!-- WORK TENURE -->
 
       <div class="form-group">
 
+
         <label>
+
           อายุงานรวม
+
         </label>
+
 
         <select
           name="work_tenure"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             น้อยกว่า 1 ปี
           </option>
 
+
           <option>
             1–3 ปี
           </option>
+
 
           <option>
             4–6 ปี
           </option>
 
+
           <option>
             7–10 ปี
           </option>
+
 
           <option>
             มากกว่า 10 ปี
           </option>
 
+
         </select>
+
 
       </div>
 
 
-      <!-- INDUSTRY -->
 
       <div class="form-group">
 
+
         <label>
+
           บริษัทที่ท่านทำงานอยู่ในปัจจุบัน
           อยู่ในอุตสาหกรรมใด
+
         </label>
+
 
         <select
           name="industry"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             การผลิต/อุตสาหกรรม
           </option>
 
+
           <option>
             การเงิน/ธนาคาร/ประกันภัย
           </option>
+
 
           <option>
             การค้า/ค้าปลีก/ค้าส่ง
           </option>
 
+
           <option>
             โรงแรม/ท่องเที่ยว/บริการ
           </option>
+
 
           <option>
             เทคโนโลยี/โทรคมนาคม
           </option>
 
+
           <option>
             ก่อสร้าง/อสังหาริมทรัพย์
           </option>
+
 
           <option>
             อื่น ๆ
           </option>
 
+
         </select>
+
 
         <input
           type="text"
           name="industry_other"
           placeholder="หากเลือกอื่น ๆ โปรดระบุ">
 
+
       </div>
 
 
-      <!-- EMPLOYMENT STATUS -->
 
       <div class="form-group">
 
+
         <label>
+
           สถานภาพการจ้างงานในปัจจุบัน
+
         </label>
+
 
         <select
           name="employment_status"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             พนักงานประจำ
           </option>
 
+
           <option>
             พนักงานชั่วคราว/สัญญาจ้าง
           </option>
+
 
           <option>
             อื่น ๆ
           </option>
 
+
         </select>
+
 
         <input
           type="text"
           name="employment_other"
           placeholder="หากเลือกอื่น ๆ โปรดระบุ">
 
+
       </div>
 
 
-      <!-- JOB LEVEL -->
 
       <div class="form-group">
 
+
         <label>
+
           ระดับตำแหน่งงานปัจจุบัน
+
         </label>
+
 
         <select
           name="job_level"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             พนักงานระดับปฏิบัติการ
           </option>
 
+
           <option>
             หัวหน้างาน/ผู้ควบคุมงาน
           </option>
+
 
           <option>
             ผู้จัดการ
           </option>
 
+
           <option>
             ผู้บริหาร
           </option>
+
 
           <option>
             อื่น ๆ
           </option>
 
+
         </select>
+
 
         <input
           type="text"
           name="job_level_other"
           placeholder="หากเลือกอื่น ๆ โปรดระบุ">
 
+
       </div>
 
 
-      <!-- REGION -->
 
       <div class="form-group">
 
+
         <label>
+
           สถานที่ทำงานตั้งอยู่ในภูมิภาคใด
+
         </label>
+
 
         <select
           name="region"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             ภาคเหนือ
           </option>
 
+
           <option>
             ตะวันออกเฉียงเหนือ (อีสาน)
           </option>
+
 
           <option>
             ภาคกลาง
           </option>
 
+
           <option>
             ภาคตะวันออก
           </option>
+
 
           <option>
             ภาคตะวันตก
           </option>
 
+
           <option>
             ภาคใต้
           </option>
 
+
         </select>
+
 
       </div>
 
 
-      <!-- INCOME -->
 
       <div class="form-group">
 
+
         <label>
+
           รายได้ต่อเดือน
+
         </label>
+
 
         <select
           name="income"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             ต่ำกว่า 20,000 บาท
           </option>
 
+
           <option>
             20,000–30,000 บาท
           </option>
+
 
           <option>
             30,001–40,000 บาท
           </option>
 
+
           <option>
             40,001–50,000 บาท
           </option>
+
 
           <option>
             มากกว่า 50,000 บาท
           </option>
 
+
         </select>
+
 
       </div>
 
 
-      <!-- WORK DAYS -->
 
       <div class="form-group">
 
+
         <label>
+
           จำนวนวันทำงานเฉลี่ยต่อสัปดาห์
+
         </label>
+
 
         <select
           name="work_days_week"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             1–2 วันต่อสัปดาห์
           </option>
 
+
           <option>
             3 วันต่อสัปดาห์
           </option>
+
 
           <option>
             4 วันต่อสัปดาห์
           </option>
 
+
           <option>
             5 วันต่อสัปดาห์
           </option>
+
 
           <option>
             6 วันต่อสัปดาห์
           </option>
 
+
         </select>
+
 
       </div>
 
 
-      <!-- COMPANY SIZE -->
 
       <div class="form-group">
 
+
         <label>
-          บริษัท/องค์กรมีพนักงานทั้งหมดประมาณกี่คน
+
+          บริษัท/องค์กรมีพนักงานทั้งหมด
+          ประมาณกี่คน
+
         </label>
+
 
         <select
           name="company_size"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option value="S">
+
             S (Small): 1–50 คน
+
           </option>
+
 
           <option value="M">
+
             M (Medium): 51–200 คน
+
           </option>
+
 
           <option value="L">
+
             L (Large): 201 คนขึ้นไป
+
           </option>
 
+
         </select>
+
 
       </div>
 
 
-      <!-- MARITAL -->
 
       <div class="form-group">
 
+
         <label>
+
           สถานภาพสมรส
+
         </label>
+
 
         <select
           name="marital_status"
           required>
 
+
           <option value="">
+
             -- เลือก --
+
           </option>
+
 
           <option>
             โสด
           </option>
 
+
           <option>
             แต่งงานและอยู่ร่วมกัน
           </option>
+
 
           <option>
             แต่งงานแต่ไม่ได้อยู่ร่วมกัน
           </option>
 
+
           <option>
             อยู่ด้วยกันโดยไม่ได้แต่งงาน
           </option>
+
 
           <option>
             หม้าย
           </option>
 
+
           <option>
             หย่า/แยกทาง
           </option>
 
+
         </select>
+
 
       </div>
 
 
-      <!-- HONEYPOT -->
+
+      <!-- Honeypot -->
 
       <input
         type="text"
@@ -1239,6 +2505,7 @@
         class="honeypot"
         tabindex="-1"
         autocomplete="off">
+
 
 
       <button
@@ -1250,9 +2517,12 @@
 
       </button>
 
+
     </section>
 
+
   </form>
+
 
 
   <!-- ===================================== -->
@@ -1263,26 +2533,36 @@
     id="resultSection"
     class="card result-card hidden">
 
+
     <h2>
+
       ผลการประเมิน
+
     </h2>
 
+
     <p>
+
       คะแนนเฉลี่ยรวม
+
     </p>
+
 
     <div
       id="overallScore"
       class="score-big">
     </div>
 
+
     <div
       id="riskBadge"
       class="risk">
     </div>
 
+
     <div id="dimensionResults">
     </div>
+
 
 
     <div class="disclaimer">
@@ -1298,11 +2578,9 @@
     </div>
 
 
-    <!-- ================================= -->
-    <!-- RESTART -->
-    <!-- ================================= -->
 
     <div class="result-actions">
+
 
       <button
         id="restartBtn"
@@ -1313,14 +2591,18 @@
 
       </button>
 
+
       <p
         id="restartNote"
         class="result-actions-note">
       </p>
 
+
     </div>
 
+
   </section>
+
 
 
   <!-- ===================================== -->
@@ -1331,12 +2613,17 @@
     id="stopSection"
     class="card hidden">
 
+
     <h2>
+
       สิ้นสุดแบบสอบถาม
+
     </h2>
+
 
     <p id="stopMessage">
     </p>
+
 
   </section>
 
@@ -1344,26 +2631,22 @@
 </div>
 
 
+
 <script>
+
 
 /************************************************************
  * CONFIG
  ************************************************************/
 
-/*
- * หากคุณ Update deployment เดิมของ Apps Script
- * URL นี้ใช้ต่อได้
- *
- * หากสร้าง deployment ใหม่
- * ให้เอา Web App URL ใหม่มาเปลี่ยนตรงนี้
- */
-
 const APP_SCRIPT_URL =
+
   'https://script.google.com/macros/s/AKfycbx0V9e5z6DxQO_T1GT0uw9NbgtCXz9jdTajYNCePXhVBmrjIJinIPfcboXO-Wk4rzvF8Q/exec';
 
 
 const INCLUDE_SECONDARY =
   true;
+
 
 
 /************************************************************
@@ -1374,24 +2657,31 @@ const INCLUDE_SECONDARY =
  ************************************************************/
 
 const params =
+
   new URLSearchParams(
     window.location.search
   );
 
 
 const requestedForm =
-  params.get('form');
+
+  params.get(
+    'form'
+  );
 
 
 const FORM_VERSION =
 
   requestedForm === '12'
+
     ? 'BAT12'
 
     : requestedForm === '23'
+
       ? 'BAT23'
 
       : null;
+
 
 
 /************************************************************
@@ -1401,11 +2691,8 @@ const FORM_VERSION =
 const QUESTION_SETS = {
 
 
-  /********************************************************
-   * BAT-12
-   ********************************************************/
-
   BAT12: [
+
 
     {
 
@@ -1490,14 +2777,13 @@ const QUESTION_SETS = {
 
     }
 
+
   ],
 
 
-  /********************************************************
-   * BAT-23
-   ********************************************************/
 
   BAT23: [
+
 
     {
 
@@ -1604,9 +2890,11 @@ const QUESTION_SETS = {
 
     }
 
+
   ]
 
 };
+
 
 
 /************************************************************
@@ -1615,29 +2903,42 @@ const QUESTION_SETS = {
 
 const SECONDARY_ITEMS = [
 
+
   'ฉันมีปัญหาในการนอนหลับหรือไม่สามารถหลับได้ยาว ๆ',
+
 
   'ฉันค่อนข้างจะเป็นกังวลใจ',
 
+
   'ฉันรู้สึกตึงเครียดและกดดัน',
+
 
   'ฉันรู้สึกวิตกกังวลหรือมีอาการแพนิค',
 
+
   'เมื่ออยู่ในที่เสียงดัง ๆ หรือคนเยอะ ฉันค่อนข้างรู้สึกรบกวนใจ',
+
 
   'ฉันมักจะรู้สึกเจ็บหน้าอกหรือใจสั่น',
 
+
   'ฉันมักจะมีอาการปวดท้องหรือมีอาการทางลำไส้',
+
 
   'ฉันมักจะรู้สึกปวดหัว',
 
+
   'ฉันรู้สึกปวดเมื่อยกล้ามเนื้อ เช่น ที่คอ บ่า ไหล่ หรือหลัง',
+
 
   'ฉันมักจะป่วยอยู่บ่อย ๆ',
 
+
   'ฉันมีน้ำหนักขึ้นลงทั้งที่ไม่ได้ควบคุมอาหาร'
 
+
 ];
+
 
 
 /************************************************************
@@ -1646,54 +2947,71 @@ const SECONDARY_ITEMS = [
 
 const SCALE = [
 
+
   [1, 'ไม่เคย'],
+
 
   [2, 'นาน ๆ ครั้ง'],
 
+
   [3, 'บางครั้ง'],
+
 
   [4, 'บ่อยครั้ง'],
 
+
   [5, 'ตลอดเวลา']
+
 
 ];
 
 
-/************************************************************
- * STARTUP
- ************************************************************/
 
-/*
- * สร้างลิงก์ BAT12 / BAT23
- * โดยรักษา GitHub Pages path เดิมไว้
- */
+/************************************************************
+ * BUILD FORM LINKS
+ ************************************************************/
 
 ['12', '23']
   .forEach(
+
     function(version) {
 
+
       const url =
+
         new URL(
           window.location.href
         );
+
 
       url.searchParams.set(
         'form',
         version
       );
 
+
       document
         .getElementById(
-          'bat' + version + 'Link'
+          'bat' +
+          version +
+          'Link'
         )
         .href =
           url.href;
 
+
     }
+
   );
 
 
+
+/************************************************************
+ * STARTUP
+ ************************************************************/
+
 if (!INCLUDE_SECONDARY) {
+
 
   document
     .getElementById(
@@ -1703,13 +3021,10 @@ if (!INCLUDE_SECONDARY) {
       'hidden'
     );
 
+
 }
 
 
-/************************************************************
- * ถ้ามี ?form=12 หรือ ?form=23
- * ให้เข้าแบบประเมินนั้นโดยตรง
- ************************************************************/
 
 if (FORM_VERSION) {
 
@@ -1723,6 +3038,7 @@ if (FORM_VERSION) {
       : 'BAT-23-TH';
 
 
+
   const questionCount =
 
     FORM_VERSION === 'BAT12'
@@ -1732,6 +3048,11 @@ if (FORM_VERSION) {
       : 23;
 
 
+
+  /********************************************************
+   * Header
+   ********************************************************/
+
   document
     .getElementById(
       'versionBadge'
@@ -1740,11 +3061,13 @@ if (FORM_VERSION) {
       versionLabel;
 
 
+
   document.title =
 
     versionLabel +
 
     ' | Burnout Assessment Tool';
+
 
 
   document
@@ -1762,9 +3085,67 @@ if (FORM_VERSION) {
       ' ข้อ';
 
 
+
+  /********************************************************
+   * Consent text changes automatically
+   ********************************************************/
+
+  document
+    .getElementById(
+      'consentFormDescription'
+    )
+    .textContent =
+
+      'Burnout Assessment Tool ' +
+
+      'ฉบับภาษาไทย ' +
+
+      questionCount +
+
+      ' ข้อ (' +
+
+      versionLabel +
+
+      ')';
+
+
+
+  document
+    .getElementById(
+      'consentFormShortName'
+    )
+    .textContent =
+      versionLabel;
+
+
+
+  /********************************************************
+   * Restart note
+   ********************************************************/
+
+  document
+    .getElementById(
+      'restartNote'
+    )
+    .textContent =
+
+      'เริ่มทำ ' +
+
+      versionLabel +
+
+      ' ใหม่อีกครั้ง';
+
+
+
+  /********************************************************
+   * Render
+   ********************************************************/
+
   renderCoreQuestions();
 
+
   renderSecondaryQuestions();
+
 
 
   document
@@ -1779,17 +3160,13 @@ if (FORM_VERSION) {
 } else {
 
 
-  /********************************************************
-   * ถ้าไม่มี form
-   * จึงค่อยแสดงหน้าเลือก
-   ********************************************************/
-
   document
     .getElementById(
       'versionBadge'
     )
     .textContent =
       'BAT-12-TH / BAT-23-TH';
+
 
 
   document
@@ -1801,17 +3178,21 @@ if (FORM_VERSION) {
     );
 
 
+
   if (
     requestedForm !== null
   ) {
 
+
     const message =
+
       document.getElementById(
         'formSelectionMessage'
       );
 
 
     message.textContent =
+
       'ลิงก์ระบุฉบับไม่ถูกต้อง กรุณาเลือก BAT-12 หรือ BAT-23 ด้านล่าง';
 
 
@@ -1819,35 +3200,12 @@ if (FORM_VERSION) {
       'hidden'
     );
 
+
   }
 
-}
-
-
-/************************************************************
- * RESTART NOTE
- *
- * BAT12 จะแสดง BAT-12
- * BAT23 จะแสดง BAT-23
- ************************************************************/
-
-if (FORM_VERSION) {
-
-  const restartNote =
-    document.getElementById(
-      'restartNote'
-    );
-
-
-  restartNote.textContent =
-
-    FORM_VERSION === 'BAT12'
-
-      ? 'เริ่มทำ BAT-12-TH ใหม่อีกครั้ง'
-
-      : 'เริ่มทำ BAT-23-TH ใหม่อีกครั้ง';
 
 }
+
 
 
 /************************************************************
@@ -1856,7 +3214,9 @@ if (FORM_VERSION) {
 
 function renderCoreQuestions() {
 
+
   const target =
+
     document.getElementById(
       'coreQuestions'
     );
@@ -1866,14 +3226,17 @@ function renderCoreQuestions() {
     1;
 
 
+
   QUESTION_SETS[
     FORM_VERSION
   ]
     .forEach(
+
       function(group) {
 
 
         const heading =
+
           document.createElement(
             'h3'
           );
@@ -1888,8 +3251,10 @@ function renderCoreQuestions() {
         );
 
 
+
         group.items
           .forEach(
+
             function(text) {
 
 
@@ -1913,13 +3278,19 @@ function renderCoreQuestions() {
 
               questionNumber++;
 
+
             }
+
           );
 
+
       }
+
     );
 
+
 }
+
 
 
 /************************************************************
@@ -1928,35 +3299,46 @@ function renderCoreQuestions() {
 
 function renderSecondaryQuestions() {
 
+
   const section =
+
     document.getElementById(
       'secondarySection'
     );
 
 
+
   if (!INCLUDE_SECONDARY) {
+
 
     section.classList.add(
       'hidden'
     );
 
+
     return;
+
 
   }
 
 
+
   const target =
+
     document.getElementById(
       'secondaryQuestions'
     );
 
 
+
   SECONDARY_ITEMS
     .forEach(
+
       function(
         text,
         index
       ) {
+
 
         target.appendChild(
 
@@ -1975,10 +3357,14 @@ function renderSecondaryQuestions() {
 
         );
 
+
       }
+
     );
 
+
 }
+
 
 
 /************************************************************
@@ -1991,7 +3377,9 @@ function createQuestion(
   required
 ) {
 
+
   const fieldset =
+
     document.createElement(
       'fieldset'
     );
@@ -2001,7 +3389,9 @@ function createQuestion(
     'question';
 
 
+
   const legend =
+
     document.createElement(
       'legend'
     );
@@ -2016,7 +3406,9 @@ function createQuestion(
   );
 
 
+
   const scale =
+
     document.createElement(
       'div'
     );
@@ -2026,7 +3418,9 @@ function createQuestion(
     'scale';
 
 
+
   SCALE.forEach(
+
     function(option) {
 
 
@@ -2038,13 +3432,17 @@ function createQuestion(
         option[1];
 
 
+
       const label =
+
         document.createElement(
           'label'
         );
 
 
+
       const input =
+
         document.createElement(
           'input'
         );
@@ -2062,12 +3460,16 @@ function createQuestion(
         value;
 
 
+
       if (required) {
+
 
         input.required =
           true;
 
+
       }
+
 
 
       label.appendChild(
@@ -2092,7 +3494,9 @@ function createQuestion(
         label
       );
 
+
     }
+
   );
 
 
@@ -2103,7 +3507,9 @@ function createQuestion(
 
   return fieldset;
 
+
 }
+
 
 
 /************************************************************
@@ -2122,37 +3528,41 @@ document
 
 
       if (!FORM_VERSION) {
+
         return;
+
       }
 
 
+
       const consent =
+
         checkedValue(
           'consent'
         );
 
 
       const age18 =
+
         checkedValue(
           'age18'
         );
 
 
       const employee =
+
         checkedValue(
           'privateEmployee'
         );
 
 
       const thai =
+
         checkedValue(
           'readThai'
         );
 
 
-      /******************************************************
-       * ต้องตอบครบ
-       ******************************************************/
 
       if (
 
@@ -2166,22 +3576,25 @@ document
 
       ) {
 
+
         alert(
+
           'กรุณาตอบคำถามให้ครบทุกข้อ'
+
         );
 
+
         return;
+
 
       }
 
 
-      /******************************************************
-       * ไม่ consent
-       ******************************************************/
 
       if (
         consent !== 'yes'
       ) {
+
 
         stopSurvey(
 
@@ -2189,14 +3602,13 @@ document
 
         );
 
+
         return;
+
 
       }
 
 
-      /******************************************************
-       * Eligibility
-       ******************************************************/
 
       if (
 
@@ -2208,20 +3620,20 @@ document
 
       ) {
 
+
         stopSurvey(
 
           'ขอขอบคุณสำหรับความสนใจ แต่ท่านไม่เข้าเกณฑ์การเข้าร่วมการศึกษานี้ แบบสอบถามจึงสิ้นสุดที่ขั้นตอนนี้'
 
         );
 
+
         return;
+
 
       }
 
 
-      /******************************************************
-       * เปิด Questionnaire
-       ******************************************************/
 
       document
         .getElementById(
@@ -2230,6 +3642,7 @@ document
         .classList.add(
           'hidden'
         );
+
 
 
       document
@@ -2241,14 +3654,21 @@ document
         );
 
 
+
       window.scrollTo({
+
         top: 0,
-        behavior: 'smooth'
+
+        behavior:
+          'smooth'
+
       });
+
 
     }
 
   );
+
 
 
 /************************************************************
@@ -2257,7 +3677,9 @@ document
 
 function checkedValue(name) {
 
+
   const selected =
+
     document.querySelector(
 
       'input[name="' +
@@ -2275,7 +3697,9 @@ function checkedValue(name) {
 
     : null;
 
+
 }
+
 
 
 /************************************************************
@@ -2284,6 +3708,7 @@ function checkedValue(name) {
 
 function stopSurvey(message) {
 
+
   document
     .getElementById(
       'consentSection'
@@ -2291,6 +3716,7 @@ function stopSurvey(message) {
     .classList.add(
       'hidden'
     );
+
 
 
   document
@@ -2302,12 +3728,14 @@ function stopSurvey(message) {
     );
 
 
+
   document
     .getElementById(
       'stopMessage'
     )
     .textContent =
       message;
+
 
 
   document
@@ -2318,7 +3746,9 @@ function stopSurvey(message) {
       'hidden'
     );
 
+
 }
+
 
 
 /************************************************************
@@ -2339,13 +3769,18 @@ document
       event.preventDefault();
 
 
+
       if (!FORM_VERSION) {
+
         return;
+
       }
+
 
 
       const form =
         event.currentTarget;
+
 
 
       if (
@@ -2357,7 +3792,9 @@ document
       }
 
 
+
       const submitBtn =
+
         document.getElementById(
           'submitBtn'
         );
@@ -2371,15 +3808,14 @@ document
         'กำลังส่งข้อมูล...';
 
 
+
       const formData =
+
         new FormData(
           form
         );
 
 
-      /******************************************************
-       * NUMBER OF CORE QUESTIONS
-       ******************************************************/
 
       const questionCount =
 
@@ -2390,18 +3826,25 @@ document
           : 23;
 
 
-      /******************************************************
-       * CORE ANSWERS
-       ******************************************************/
+
+      /********************************************************
+       * CORE
+       ********************************************************/
 
       const answers = {};
 
 
+
       for (
+
         let i = 1;
+
         i <= questionCount;
+
         i++
+
       ) {
+
 
         answers[
           'q' + i
@@ -2415,25 +3858,34 @@ document
 
           );
 
+
       }
 
 
-      /******************************************************
+
+      /********************************************************
        * SECONDARY
-       ******************************************************/
+       ********************************************************/
 
       const secondary = {};
+
 
 
       if (
         INCLUDE_SECONDARY
       ) {
 
+
         for (
+
           let i = 1;
+
           i <= 11;
+
           i++
+
         ) {
+
 
           secondary[
             's' + i
@@ -2447,159 +3899,180 @@ document
 
             );
 
+
         }
+
 
       }
 
 
-      /******************************************************
+
+      /********************************************************
        * DEMOGRAPHICS
-       ******************************************************/
+       ********************************************************/
 
       const demographics = {
 
 
         sex:
+
           formData.get(
             'sex'
           ),
 
 
         age_group:
+
           formData.get(
             'age_group'
           ),
 
 
         education:
+
           formData.get(
             'education'
           ),
 
 
         work_tenure:
+
           formData.get(
             'work_tenure'
           ),
 
 
         industry:
+
           formData.get(
             'industry'
           ),
 
 
         industry_other:
+
           formData.get(
             'industry_other'
           ),
 
 
         employment_status:
+
           formData.get(
             'employment_status'
           ),
 
 
         employment_other:
+
           formData.get(
             'employment_other'
           ),
 
 
         job_level:
+
           formData.get(
             'job_level'
           ),
 
 
         job_level_other:
+
           formData.get(
             'job_level_other'
           ),
 
 
         region:
+
           formData.get(
             'region'
           ),
 
 
         income:
+
           formData.get(
             'income'
           ),
 
 
         work_days_week:
+
           formData.get(
             'work_days_week'
           ),
 
 
         company_size:
+
           formData.get(
             'company_size'
           ),
 
 
         marital_status:
+
           formData.get(
             'marital_status'
           )
 
+
       };
 
 
-      /******************************************************
-       * CALCULATE SCORE
-       ******************************************************/
 
       const scores =
+
         calculateScores(
           answers
         );
 
 
-      /******************************************************
+
+      /********************************************************
        * PAYLOAD
-       *
-       * form_version สำคัญ:
-       *
-       * BAT12 -> Code.gs -> Sheet BAT12
-       * BAT23 -> Code.gs -> Sheet BAT23
-       ******************************************************/
+       ********************************************************/
 
       const payload = {
 
 
         response_id:
+
           createResponseId(),
 
 
         form_version:
+
           FORM_VERSION,
 
 
         client_submitted_at:
+
           new Date()
             .toISOString(),
 
 
         consent:
+
           true,
 
 
         eligibility: {
 
+
           age18:
             true,
+
 
           privateEmployee:
             true,
 
+
           readThai:
             true
+
 
         },
 
@@ -2624,12 +4097,14 @@ document
             )
             .value
 
+
       };
 
 
-      /******************************************************
-       * SEND TO APPS SCRIPT
-       ******************************************************/
+
+      /********************************************************
+       * SEND
+       ********************************************************/
 
       try {
 
@@ -2640,30 +4115,41 @@ document
 
           {
 
+
             method:
               'POST',
+
 
             mode:
               'no-cors',
 
+
             cache:
               'no-store',
 
+
             headers: {
 
+
               'Content-Type':
+
                 'text/plain;charset=utf-8'
+
 
             },
 
+
             body:
+
               JSON.stringify(
                 payload
               )
 
+
           }
 
         );
+
 
 
         showResult(
@@ -2686,88 +4172,96 @@ document
         );
 
 
+
         submitBtn.disabled =
           false;
 
 
         submitBtn.textContent =
+
           'ส่งแบบประเมินและดูผล';
 
+
       }
+
 
     }
 
   );
 
 
+
 /************************************************************
  * SCORE CALCULATION
- *
- * ใช้สูตรเดิม
  ************************************************************/
 
 function calculateScores(
   answers
 ) {
 
+
   let groups;
 
 
-  /********************************************************
-   * BAT12
-   ********************************************************/
 
   if (
     FORM_VERSION === 'BAT12'
   ) {
 
+
     groups = {
+
 
       exhaustion:
         [1, 2, 3],
 
+
       mentalDistance:
         [4, 5, 6],
+
 
       cognitive:
         [7, 8, 9],
 
+
       emotional:
         [10, 11, 12]
+
 
     };
 
 
-  /********************************************************
-   * BAT23
-   ********************************************************/
-
   } else {
 
+
     groups = {
+
 
       exhaustion:
         [1,2,3,4,5,6,7,8],
 
+
       mentalDistance:
         [9,10,11,12,13],
+
 
       cognitive:
         [14,15,16,17,18],
 
+
       emotional:
         [19,20,21,22,23]
 
+
     };
+
 
   }
 
 
-  /********************************************************
-   * MEAN DIMENSION
-   ********************************************************/
 
   function mean(numbers) {
+
 
     const total =
 
@@ -2778,6 +4272,7 @@ function calculateScores(
           number
         ) {
 
+
           return (
 
             sum +
@@ -2785,18 +4280,21 @@ function calculateScores(
             Number(
 
               answers[
-                'q' + number
+                'q' +
+                number
               ]
 
             )
 
           );
 
+
         },
 
         0
 
       );
+
 
 
     return round2(
@@ -2806,12 +4304,10 @@ function calculateScores(
 
     );
 
+
   }
 
 
-  /********************************************************
-   * OVERALL SCORE
-   ********************************************************/
 
   const totalQuestions =
 
@@ -2822,15 +4318,22 @@ function calculateScores(
       : 23;
 
 
+
   let total =
     0;
 
 
+
   for (
+
     let i = 1;
+
     i <= totalQuestions;
+
     i++
+
   ) {
+
 
     total +=
 
@@ -2842,16 +4345,20 @@ function calculateScores(
 
       );
 
+
   }
 
 
+
   const overall =
+
     round2(
 
       total /
       totalQuestions
 
     );
+
 
 
   const result = {
@@ -2862,35 +4369,39 @@ function calculateScores(
 
 
     exhaustion:
+
       mean(
         groups.exhaustion
       ),
 
 
     mentalDistance:
+
       mean(
         groups.mentalDistance
       ),
 
 
     cognitive:
+
       mean(
         groups.cognitive
       ),
 
 
     emotional:
+
       mean(
         groups.emotional
       )
 
+
   };
 
 
+
   /********************************************************
-   * BAT12 CUT-OFF
-   *
-   * คงตามเดิม
+   * BAT12
    ********************************************************/
 
   if (
@@ -2902,8 +4413,10 @@ function calculateScores(
       overall <= 2.50
     ) {
 
+
       result.risk =
         'LOW';
+
 
       result.riskLabel =
         'เสี่ยงต่ำ';
@@ -2913,8 +4426,10 @@ function calculateScores(
       overall < 3.50
     ) {
 
+
       result.risk =
         'MODERATE';
+
 
       result.riskLabel =
         'เสี่ยงปานกลาง';
@@ -2922,19 +4437,21 @@ function calculateScores(
 
     } else {
 
+
       result.risk =
         'HIGH';
+
 
       result.riskLabel =
         'เสี่ยงสูง';
 
+
     }
 
 
+
   /********************************************************
-   * BAT23 CUT-OFF
-   *
-   * คงตามเดิม
+   * BAT23
    ********************************************************/
 
   } else {
@@ -2944,8 +4461,10 @@ function calculateScores(
       overall < 2.59
     ) {
 
+
       result.risk =
         'LOW';
+
 
       result.riskLabel =
         'เสี่ยงต่ำ';
@@ -2955,8 +4474,10 @@ function calculateScores(
       overall < 3.02
     ) {
 
+
       result.risk =
         'MODERATE';
+
 
       result.riskLabel =
         'เสี่ยงปานกลาง';
@@ -2964,31 +4485,41 @@ function calculateScores(
 
     } else {
 
+
       result.risk =
         'HIGH';
+
 
       result.riskLabel =
         'เสี่ยงสูง';
 
+
     }
+
 
   }
 
 
+
   return result;
+
 
 }
 
 
+
 /************************************************************
- * ROUND 2
+ * ROUND
  ************************************************************/
 
 function round2(value) {
 
+
   return (
 
+
     Math.round(
+
 
       (
 
@@ -2998,11 +4529,15 @@ function round2(value) {
 
       ) * 100
 
+
     ) / 100
+
 
   );
 
+
 }
+
 
 
 /************************************************************
@@ -3023,9 +4558,6 @@ function showResult(
     );
 
 
-  /********************************************************
-   * OVERALL
-   ********************************************************/
 
   document
     .getElementById(
@@ -3037,27 +4569,29 @@ function showResult(
         .toFixed(2);
 
 
-  /********************************************************
-   * RISK BADGE
-   ********************************************************/
 
   const risk =
+
     document.getElementById(
       'riskBadge'
     );
+
 
 
   risk.textContent =
     scores.riskLabel;
 
 
+
   risk.className =
     'risk';
+
 
 
   if (
     scores.risk === 'LOW'
   ) {
+
 
     risk.classList.add(
       'risk-low'
@@ -3068,6 +4602,7 @@ function showResult(
     scores.risk === 'MODERATE'
   ) {
 
+
     risk.classList.add(
       'risk-moderate'
     );
@@ -3075,18 +4610,18 @@ function showResult(
 
   } else {
 
+
     risk.classList.add(
       'risk-high'
     );
 
+
   }
 
 
-  /********************************************************
-   * DIMENSIONS
-   ********************************************************/
 
   const dimensions = [
+
 
     [
 
@@ -3096,6 +4631,7 @@ function showResult(
 
     ],
 
+
     [
 
       'ระยะห่างทางจิตใจ',
@@ -3103,6 +4639,7 @@ function showResult(
       scores.mentalDistance
 
     ],
+
 
     [
 
@@ -3112,6 +4649,7 @@ function showResult(
 
     ],
 
+
     [
 
       'ความบกพร่องทางอารมณ์',
@@ -3120,17 +4658,22 @@ function showResult(
 
     ]
 
+
   ];
 
 
+
   const target =
+
     document.getElementById(
       'dimensionResults'
     );
 
 
+
   target.innerHTML =
     '';
+
 
 
   dimensions.forEach(
@@ -3139,6 +4682,7 @@ function showResult(
 
 
       const wrapper =
+
         document.createElement(
           'div'
         );
@@ -3148,16 +4692,22 @@ function showResult(
         'dimension';
 
 
+
       wrapper.innerHTML = `
 
         <div class="dimension-head">
 
           <span>
+
             ${item[0]}
+
           </span>
 
+
           <strong>
+
             ${item[1].toFixed(2)}
+
           </strong>
 
         </div>
@@ -3168,7 +4718,7 @@ function showResult(
           <div
             style="
               width:
-              ${(item[1] / 5) * 100}%
+              ${(item[1] / 5) * 100}%;
             ">
           </div>
 
@@ -3177,18 +4727,17 @@ function showResult(
       `;
 
 
+
       target.appendChild(
         wrapper
       );
+
 
     }
 
   );
 
 
-  /********************************************************
-   * SHOW RESULT
-   ********************************************************/
 
   document
     .getElementById(
@@ -3197,6 +4746,7 @@ function showResult(
     .classList.remove(
       'hidden'
     );
+
 
 
   window.scrollTo({
@@ -3209,30 +4759,16 @@ function showResult(
 
   });
 
+
 }
 
 
+
 /************************************************************
- * RESTART ASSESSMENT
+ * RESTART
  *
- * จุดสำคัญของ version นี้
- *
- * ถ้ามาจาก:
- *
- * ?form=12
- *
- * กดทำใหม่ ->
- * กลับ ?form=12
- *
- *
- * ถ้ามาจาก:
- *
- * ?form=23
- *
- * กดทำใหม่ ->
- * กลับ ?form=23
- *
- * จะไม่กลับไปหน้าเลือกแบบประเมิน
+ * BAT12 -> BAT12
+ * BAT23 -> BAT23
  ************************************************************/
 
 document
@@ -3247,30 +4783,25 @@ document
 
 
       if (!FORM_VERSION) {
+
         return;
+
       }
 
 
-      /*
-       * เอา URL ปัจจุบัน
-       *
-       * ทำให้ใช้ได้กับ GitHub Pages
-       * แม้ repository จะมี path
-       */
 
       const url =
+
         new URL(
           window.location.href
         );
 
 
-      /******************************************************
-       * BAT12
-       ******************************************************/
 
       if (
         FORM_VERSION === 'BAT12'
       ) {
+
 
         url.searchParams.set(
           'form',
@@ -3278,35 +4809,31 @@ document
         );
 
 
-      /******************************************************
-       * BAT23
-       ******************************************************/
-
       } else {
+
 
         url.searchParams.set(
           'form',
           '23'
         );
 
+
       }
 
 
-      /*
-       * Reload แบบประเมินเดิม
-       * ทำให้ข้อมูลหน้าเก่าถูก reset
-       */
 
       window.location.href =
         url.href;
+
 
     }
 
   );
 
 
+
 /************************************************************
- * RANDOM RESPONSE ID
+ * RESPONSE ID
  ************************************************************/
 
 function createResponseId() {
@@ -3320,21 +4847,29 @@ function createResponseId() {
 
   ) {
 
+
     return crypto.randomUUID();
+
 
   }
 
 
+
   return (
+
 
     Date.now()
       .toString(36)
 
+
     +
+
 
     '-'
 
+
     +
+
 
     Math.random()
       .toString(36)
@@ -3343,11 +4878,15 @@ function createResponseId() {
         12
       )
 
+
   );
+
 
 }
 
+
 </script>
+
 
 </body>
 
